@@ -646,49 +646,44 @@
                 ctx.stroke();
             }
 
-            // 2. Industrial Furnace
-            const furnaceX = w / 2 - 130;
-            ctx.fillStyle = '#04060f';
-            ctx.fillRect(furnaceX, 30, 260, 150);
-            ctx.fillStyle = '#FF5000';
-            ctx.fillRect(furnaceX + 15, 45, 230, 120);
-            ctx.fillStyle = '#FFB800';
-            ctx.fillRect(furnaceX + 35, 60, 190, 90);
-
-            // 3. Anvil & Thick Ingot
+            // 2. Anvil & Thick Ingot (Enclume et Lingot incandescent en bas)
+            const anvilWidth = Math.min(340, w - 20);
             const anvilY = h - 140;
             ctx.fillStyle = '#1e293b';
-            ctx.fillRect(w / 2 - 170, anvilY, 340, 40);
+            ctx.fillRect(w / 2 - anvilWidth / 2, anvilY, anvilWidth, 35);
 
             const progressRatio = gameState === 'PLAYING' ? Math.min(1, (songTimer / songDuration)) : 0;
-            const ingotWidth = 220 - (progressRatio * 40);
-            const ingotHeight = 55 + (progressRatio * 20);
+            const maxIngotW = Math.min(220, anvilWidth - 80);
+            const ingotWidth = maxIngotW - (progressRatio * 30);
+            const ingotHeight = 45 + (progressRatio * 15);
             const ingotX = w / 2 - ingotWidth / 2;
             const ingotY = anvilY - ingotHeight;
 
             ctx.fillStyle = '#ff3300';
             ctx.fillRect(ingotX, ingotY, ingotWidth, ingotHeight);
             ctx.fillStyle = '#ffaa00';
-            ctx.fillRect(ingotX + 8, ingotY + 6, ingotWidth - 16, ingotHeight - 12);
+            ctx.fillRect(ingotX + 6, ingotY + 5, ingotWidth - 12, ingotHeight - 10);
             ctx.fillStyle = '#ffff00';
-            ctx.fillRect(ingotX + 20, ingotY + 14, ingotWidth - 40, ingotHeight - 28);
+            ctx.fillRect(ingotX + 15, ingotY + 10, ingotWidth - 30, ingotHeight - 20);
 
-            // 4. Hydraulic Press
-            const pressWidth = Math.min(360, w - 40);
+            // 3. Hydraulic Press (Entièrement Gris Acier / Neutre, sans aucun jaune/orange)
+            const pressWidth = Math.min(360, w - 20);
             const pressX = w / 2 - pressWidth / 2;
 
+            // Chapeau supérieur de la presse (Gris acier sombre)
             ctx.fillStyle = '#1e293b';
-            ctx.fillRect(pressX - 10, 20, pressWidth + 20, 30);
-            ctx.fillStyle = '#0055B8';
-            ctx.fillRect(pressX, 25, pressWidth, 20);
-
+            ctx.fillRect(pressX - 5, 5, pressWidth + 10, 22);
             ctx.fillStyle = '#334155';
-            ctx.fillRect(pressX + 10, 50, 45, h - 190);
-            ctx.fillRect(pressX + pressWidth - 55, 50, 45, h - 190);
+            ctx.fillRect(pressX, 7, pressWidth, 15);
+
+            // Montants verticaux (Gris acier)
+            ctx.fillStyle = '#475569';
+            ctx.fillRect(pressX + 8, 22, 30, h - 165);
+            ctx.fillRect(pressX + pressWidth - 38, 22, 30, h - 165);
 
             let pressOffsetY = 0;
-            const defaultRamY = anvilY - 185;
-            const strikeTargetY = ingotY - 65;
+            const defaultRamY = anvilY - 145;
+            const strikeTargetY = ingotY - 50;
 
             if (pressAnimTimer > 0) {
                 const impactProgress = Math.sin((pressAnimTimer / 12) * Math.PI);
@@ -697,21 +692,23 @@
             }
 
             const ramY = defaultRamY - pressOffsetY;
-            const pistonHeight = Math.max(10, ramY - 105);
+            const pistonHeight = Math.max(10, ramY - 50);
 
-            ctx.fillStyle = '#94a3b8';
-            ctx.fillRect(pressX + 140, 105, pressWidth - 280, pistonHeight);
+            // Piston central (Gris métallique)
+            ctx.fillStyle = '#64748b';
+            ctx.fillRect(pressX + 100, 50, pressWidth - 200, pistonHeight);
 
-            ctx.fillStyle = '#0f172a';
-            ctx.fillRect(pressX + 60, ramY, pressWidth - 120, 65);
-            ctx.fillStyle = '#2563eb';
-            ctx.fillRect(pressX + 70, ramY + 8, pressWidth - 140, 49);
+            // Coulisseau / Bloc de frappe de la presse (Gris acier neutre)
+            ctx.fillStyle = '#334155';
+            ctx.fillRect(pressX + 45, ramY, pressWidth - 90, 45);
+            ctx.fillStyle = '#475569';
+            ctx.fillRect(pressX + 52, ramY + 5, pressWidth - 104, 35);
             ctx.fillStyle = '#ffffff';
-            ctx.font = 'bold 12px Inter, sans-serif';
+            ctx.font = 'bold 11px Inter, sans-serif';
             ctx.textAlign = 'center';
-            ctx.fillText('PRESSE HYDRAULIQUE', w / 2, ramY + 36);
+            ctx.fillText('PRESSE HYDRAULIQUE', w / 2, ramY + 26);
 
-            // 5. Rhythm Notes
+            // 4. Rhythm Notes
             if (gameState === 'PLAYING') {
                 const config = difficulties[currentDifficulty];
                 const laneWidth = w / 4;
@@ -730,17 +727,17 @@
                         continue;
                     }
 
-                    const nx = notes[i].lane * laneWidth + laneWidth / 2 - 28;
+                    const nx = notes[i].lane * laneWidth + laneWidth / 2 - 24;
                     const ny = notes[i].y;
                     
                     ctx.fillStyle = '#FF5000';
-                    ctx.fillRect(nx, ny - 14, 56, 28);
+                    ctx.fillRect(nx, ny - 12, 48, 24);
                     ctx.fillStyle = '#FFF200';
-                    ctx.fillRect(nx + 4, ny - 10, 48, 20);
+                    ctx.fillRect(nx + 3, ny - 9, 42, 18);
                 }
             }
 
-            // 6. Particles
+            // 5. Particles
             for (let i = particles.length - 1; i >= 0; i--) {
                 const p = particles[i];
                 p.x += p.vx;
@@ -753,7 +750,7 @@
                 if (p.life <= 0) particles.splice(i, 1);
             }
 
-            // 7. Lanes
+            // 6. Lanes
             const laneWidth = w / 4;
             const targetY = h - 120;
 
@@ -768,13 +765,13 @@
 
                 const active = activeKeys[i];
                 ctx.fillStyle = active ? 'rgba(0, 163, 224, 0.25)' : 'rgba(11, 19, 43, 0.75)';
-                ctx.fillRect(lx + 8, targetY - 35, laneWidth - 16, 70);
+                ctx.fillRect(lx + 4, targetY - 30, laneWidth - 8, 60);
                 ctx.strokeStyle = active ? '#00A3E0' : '#1e293b';
-                ctx.strokeRect(lx + 8, targetY - 35, laneWidth - 16, 70);
+                ctx.strokeRect(lx + 4, targetY - 30, laneWidth - 8, 60);
 
                 ctx.fillStyle = active ? '#00A3E0' : '#475569';
-                ctx.font = 'bold 16px JetBrains Mono, monospace';
-                ctx.fillText(['D', 'F', 'J', 'K'][i], lx + laneWidth / 2, targetY + 7);
+                ctx.font = 'bold 14px JetBrains Mono, monospace';
+                ctx.fillText(['D', 'F', 'J', 'K'][i], lx + laneWidth / 2, targetY + 5);
             }
 
             requestAnimationFrame(gameLoop);
