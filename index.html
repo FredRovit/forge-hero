@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="fr" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forge Hero</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        forge: {
+                            blue: '#0055B8',
+                            cyan: '#00A3E0',
+                            dark: '#0B132B',
+                            light: '#F8FAFC',
+                            orange: '#FF5000'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .glow-cyan { box-shadow: 0 0 25px rgba(0, 163, 224, 0.4); }
+        .glow-orange { box-shadow: 0 0 25px rgba(255, 80, 0, 0.5); }
+        .pixel-art { image-rendering: pixelated; image-rendering: crisp-edges; }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 h-full flex flex-col overflow-hidden select-none">
+
+    <!-- Top Header -->
+    <header class="bg-slate-900 border-b border-slate-800 px-4 py-2 flex items-center justify-between shrink-0 z-20 shadow-lg">
+        <div class="flex items-center space-x-3">
+            <div class="bg-blue-600 text-white px-3 py-1 rounded font-black tracking-wider text-sm flex items-center space-x-2 shadow">
+                <i class="fa-solid fa-industry text-cyan-400"></i>
+                <span>FORGE HERO</span>
+            </div>
+            <span class="text-xs text-slate-400 font-medium hidden sm:inline">Atelier de Forge & Industrie 4.0</span>
+        </div>
+
+        <!-- EPI / Safety Check Indicator Badges -->
+        <div class="flex items-center space-x-2 bg-slate-800/80 px-3 py-1.5 rounded-full border border-slate-700 text-xs">
+            <button id="musicToggleBtn" class="flex items-center space-x-1.5 bg-slate-900 hover:bg-slate-700 text-cyan-400 px-2.5 py-1 rounded-full border border-cyan-500/40 text-[11px] font-mono transition mr-1">
+                <i id="musicIcon" class="fa-solid fa-volume-high"></i>
+                <span id="musicStatus">SON : ON</span>
+            </button>
+            
+            <span class="text-slate-400 text-[11px] font-semibold uppercase hidden lg:inline mr-1">EPI :</span>
+            
+            <div class="relative group cursor-pointer">
+                <span id="badgeCasque" class="inline-flex items-center text-rose-400 bg-rose-950/50 px-2 py-0.5 rounded-full border border-rose-500/30 text-[11px]">
+                    <i class="fa-solid fa-hard-hat mr-1"></i> Casque
+                </span>
+            </div>
+
+            <div class="relative group cursor-pointer">
+                <span id="badgeLunettes" class="inline-flex items-center text-rose-400 bg-rose-950/50 px-2 py-0.5 rounded-full border border-rose-500/30 text-[11px]">
+                    <i class="fa-solid fa-glasses mr-1"></i> Lunettes
+                </span>
+            </div>
+
+            <div class="relative group cursor-pointer">
+                <span id="badgeBouchon" class="inline-flex items-center text-rose-400 bg-rose-950/50 px-2 py-0.5 rounded-full border border-rose-500/30 text-[11px]">
+                    <i class="fa-solid fa-ear-deaf mr-1"></i> Bouchon
+                </span>
+            </div>
+
+            <div class="relative group cursor-pointer">
+                <span id="badgeChaussure" class="inline-flex items-center text-rose-400 bg-rose-950/50 px-2 py-0.5 rounded-full border border-rose-500/30 text-[11px]">
+                    <i class="fa-solid fa-shoe-prints mr-1"></i> Chaussure
+                </span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Game Container -->
+    <div class="flex-1 flex flex-col md:flex-row relative overflow-hidden">
+
+        <!-- START SCREEN OVERLAY WITH MANDATORY SAFETY CHECKLIST -->
+        <div id="startScreen" class="absolute inset-0 bg-slate-950/90 backdrop-blur-md z-30 flex items-center justify-center p-4 overflow-y-auto">
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-xl w-full p-6 shadow-2xl text-center">
+                <div class="inline-flex p-3 bg-blue-600/20 text-cyan-400 rounded-2xl mb-4 border border-blue-500/30 glow-cyan">
+                    <i class="fa-solid fa-hammer text-3xl"></i>
+                </div>
+                <h1 class="text-2xl font-black tracking-wide text-white mb-1">FORGE HERO</h1>
+                <p class="text-slate-400 text-xs mb-5">Jeu de rythme & simulation de forge industrielle avec assistance IA</p>
+
+                <!-- Difficulty Selection -->
+                <div class="grid grid-cols-3 gap-2.5 mb-5">
+                    <button class="diff-btn border border-cyan-400 bg-slate-800 rounded-xl p-3 text-left transition hover:border-cyan-400 cursor-pointer" data-diff="beginner">
+                        <div class="text-xs font-bold text-cyan-400 font-mono">DÉBUTANT</div>
+                        <div class="text-[10px] text-slate-400">90 BPM • Calme</div>
+                    </button>
+                    <button class="diff-btn border border-slate-700 bg-slate-950 rounded-xl p-3 text-left transition hover:border-cyan-400 cursor-pointer" data-diff="normal">
+                        <div class="text-xs font-bold text-slate-200 font-mono">CONFIRMÉ</div>
+                        <div class="text-[10px] text-slate-400">130 BPM • Standard</div>
+                    </button>
+                    <button class="diff-btn border border-slate-700 bg-slate-950 rounded-xl p-3 text-left transition hover:border-cyan-400 cursor-pointer" data-diff="expert">
+                        <div class="text-xs font-bold text-slate-200 font-mono">EXPERT</div>
+                        <div class="text-[10px] text-slate-400">175 BPM • Intense</div>
+                    </button>
+                </div>
+
+                <!-- PRE-JOB BRIEFING & SAFETY CHECK-LIST -->
+                <div class="mb-5 bg-slate-950/80 border border-slate-800 rounded-xl p-4 text-left space-y-2.5">
+                    <div class="flex items-center justify-between text-xs font-mono text-cyan-400 border-b border-slate-800 pb-1.5">
+                        <span class="font-bold flex items-center"><i class="fa-solid fa-clipboard-check mr-1.5 text-orange-400"></i> PRÉ-JOB BRIEFING (SÉCURITÉ)</span>
+                        <span class="text-[10px] text-orange-400">OBLIGATOIRE</span>
+                    </div>
+                    <p class="text-[11px] text-slate-400">Cochez les points de contrôle réglementaires pour valider votre mise en conformité avant de démarrer la forge :</p>
+                    
+                    <div class="space-y-2 pt-1">
+                        <label class="flex items-start space-x-2.5 cursor-pointer text-xs text-slate-300 hover:text-white">
+                            <input type="checkbox" id="checkEpiAll" class="mt-0.5 accent-blue-600 w-4 h-4 rounded cursor-pointer">
+                            <span>Vérification complète des EPI (Casque, Lunettes, Bouchons, Chaussures).</span>
+                        </label>
+                        <label class="flex items-start space-x-2.5 cursor-pointer text-xs text-slate-300 hover:text-white">
+                            <input type="checkbox" id="checkPJB" class="mt-0.5 accent-blue-600 w-4 h-4 rounded cursor-pointer">
+                            <span>Réalisation du Pré-Job Briefing (PJB) et analyse des risques thermiques.</span>
+                        </label>
+                    </div>
+                </div>
+
+                <button id="startBtn" disabled class="w-full py-3.5 bg-slate-800 text-slate-500 font-bold rounded-xl shadow-lg transition-all flex items-center justify-center space-x-2 text-sm cursor-not-allowed">
+                    <i class="fa-solid fa-lock"></i>
+                    <span>VALIDER LA CHECK-LIST POUR LANCER</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- END GAME SUMMARY OVERLAY -->
+        <div id="endScreen" class="absolute inset-0 bg-slate-950/90 backdrop-blur-md z-30 hidden flex items-center justify-center p-4">
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-lg w-full p-6 shadow-2xl text-center">
+                <div class="inline-flex p-3 bg-emerald-500/20 text-emerald-400 rounded-2xl mb-3 border border-emerald-500/30">
+                    <i class="fa-solid fa-award text-3xl"></i>
+                </div>
+                <h2 class="text-xl font-black text-white mb-1">PIÈCE FORGÉE AVEC SUCCÈS !</h2>
+                <p class="text-slate-400 text-xs mb-5">Rotor industriel de haute précision - Contrôle qualité validé</p>
+
+                <div class="grid grid-cols-2 gap-3 mb-5 text-left">
+                    <div class="bg-slate-950 p-3 rounded-xl border border-slate-800">
+                        <div class="text-[10px] text-slate-400 font-mono">SCORE FINAL</div>
+                        <div id="finalScore" class="text-lg font-black font-mono text-cyan-400">0 pts</div>
+                    </div>
+                    <div class="bg-slate-950 p-3 rounded-xl border border-slate-800">
+                        <div class="text-[10px] text-slate-400 font-mono">PRÉCISION</div>
+                        <div id="finalAccuracy" class="text-lg font-black font-mono text-emerald-400">0%</div>
+                    </div>
+                    <div class="bg-slate-950 p-3 rounded-xl border border-slate-800">
+                        <div class="text-[10px] text-slate-400 font-mono">COMBO MAX</div>
+                        <div id="finalCombo" class="text-lg font-black font-mono text-orange-400">0x</div>
+                    </div>
+                    <div class="bg-slate-950 p-3 rounded-xl border border-slate-800">
+                        <div class="text-[10px] text-slate-400 font-mono">NOTE QUALITÉ</div>
+                        <div id="finalGrade" class="text-lg font-black font-mono text-amber-400">A+</div>
+                    </div>
+                </div>
+
+                <div class="flex space-x-3">
+                    <button id="restartBtn" class="flex-1 py-3 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-bold rounded-xl shadow-lg hover:opacity-90 transition cursor-pointer">
+                        <i class="fa-solid fa-rotate-right mr-1.5"></i> RECOMMENCER
+                    </button>
+                    <button id="changeDiffBtn" class="px-4 py-3 bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold rounded-xl transition text-xs cursor-pointer">
+                        Difficulté
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- LEFT SIDE: Canvas Area -->
+        <div class="flex-1 relative flex flex-col items-center justify-center bg-slate-950 overflow-hidden border-r border-slate-800">
+            <canvas id="gameCanvas" class="absolute inset-0 w-full h-full block pixel-art"></canvas>
+
+            <!-- Floating Judgment Popup Container -->
+            <div id="judgmentPopup" class="absolute top-1/4 text-2xl md:text-3xl font-black tracking-widest font-mono transition-all duration-150 opacity-0 pointer-events-none z-10 scale-90">
+                PARFAIT
+            </div>
+
+            <!-- Lane Control Hints Overlay -->
+            <div class="absolute bottom-4 left-0 right-0 flex justify-center space-x-3 z-10 pointer-events-none">
+                <div class="w-14 h-14 rounded-xl bg-slate-900/80 border-2 border-slate-700 flex flex-col items-center justify-center text-slate-300 font-mono shadow-lg">
+                    <span class="text-base font-bold">D</span>
+                    <span class="text-[9px] text-cyan-400">VOIE 1</span>
+                </div>
+                <div class="w-14 h-14 rounded-xl bg-slate-900/80 border-2 border-slate-700 flex flex-col items-center justify-center text-slate-300 font-mono shadow-lg">
+                    <span class="text-base font-bold">F</span>
+                    <span class="text-[9px] text-cyan-400">VOIE 2</span>
+                </div>
+                <div class="w-14 h-14 rounded-xl bg-slate-900/80 border-2 border-slate-700 flex flex-col items-center justify-center text-slate-300 font-mono shadow-lg">
+                    <span class="text-base font-bold">J</span>
+                    <span class="text-[9px] text-cyan-400">VOIE 3</span>
+                </div>
+                <div class="w-14 h-14 rounded-xl bg-slate-900/80 border-2 border-slate-700 flex flex-col items-center justify-center text-slate-300 font-mono shadow-lg">
+                    <span class="text-base font-bold">K</span>
+                    <span class="text-[9px] text-cyan-400">VOIE 4</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- RIGHT SIDE: Industrial HUD & AI Assistant Panel -->
+        <div class="w-full md:w-80 bg-slate-900/95 p-4 flex flex-col justify-between shrink-0 border-t md:border-t-0 md:border-l border-slate-800 z-20">
+            <div class="space-y-3">
+                <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+                    <span class="text-xs font-mono text-slate-400">SCORE</span>
+                    <span id="hudScore" class="text-lg font-black font-mono text-cyan-400">000000</span>
+                </div>
+
+                <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+                    <span class="text-xs font-mono text-slate-400">COMBO</span>
+                    <span id="hudCombo" class="text-lg font-black font-mono text-orange-400">0x</span>
+                </div>
+
+                <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+                    <span class="text-xs font-mono text-slate-400">TEMPÉRATURE LINGOT</span>
+                    <span id="hudTemp" class="text-sm font-black font-mono text-amber-500">1250°C</span>
+                </div>
+
+                <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+                    <span class="text-xs font-mono text-slate-400">DIFFICULTÉ</span>
+                    <span id="hudDiff" class="text-xs font-bold font-mono text-emerald-400">DÉBUTANT</span>
+                </div>
+            </div>
+
+            <!-- AI Process Assistant Panel -->
+            <div class="my-4 bg-slate-950 border border-slate-800 rounded-xl p-3">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="text-[11px] font-mono font-bold text-cyan-400 flex items-center">
+                        <i class="fa-solid fa-microchip mr-1.5 text-cyan-400"></i> ASSISTANT IA FORGE
+                    </span>
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                </div>
+                <p id="aiMessage" class="text-[11px] text-slate-300 font-sans leading-relaxed">
+                    Presse prête. Attente du top départ. Respectez les cadences de frappe pour garantir l'homogénéité du métal.
+                </p>
+                <div class="mt-2.5 pt-2 border-t border-slate-800/80 flex justify-between text-[10px] font-mono text-slate-400">
+                    <span>Pressage: <strong id="aiProgress" class="text-cyan-400">0%</strong></span>
+                    <span>Optimisation: <strong class="text-emerald-400">99.2%</strong></span>
+                </div>
+            </div>
+
+            <!-- In-game Restart Button -->
+            <button id="inGameRestartBtn" class="w-full py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold rounded-xl border border-slate-700 transition flex items-center justify-center space-x-2 text-xs cursor-pointer">
+                <i class="fa-solid fa-rotate-right"></i>
+                <span>RECOMMENCER LA PARTIE</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- AUDIO & GAME ENGINE SCRIPT -->
+    <script>
+        class SoundEngine {
+            constructor() {
+                this.ctx = null;
+                this.muted = false;
+                this.musicInterval = null;
+                this.step = 0;
+            }
+
+            init() {
+                if (!this.ctx) {
+                    const AudioContext = window.AudioContext || window.webkitAudioContext;
+                    this.ctx = new AudioContext();
+                }
+                if (this.ctx.state === 'suspended') {
+                    this.ctx.resume();
+                }
+            }
+
+            toggleMute() {
+                this.muted = !this.muted;
+                return this.muted;
+            }
+
+            playHitSound(type) {
+                if (this.muted || !this.ctx) return;
+                try {
+                    const now = this.ctx.currentTime;
+                    const osc = this.ctx.createOscillator();
+                    const gain = this.ctx.createGain();
+
+                    if (type === 'perfect') {
+                        osc.type = 'square';
+                        osc.frequency.setValueAtTime(180, now);
+                        osc.frequency.exponentialRampToValueAtTime(40, now + 0.12);
+                        gain.gain.setValueAtTime(0.3, now);
+                        gain.gain.linearRampToValueAtTime(0.01, now + 0.12);
+                    } else if (type === 'good') {
+                        osc.type = 'triangle';
+                        osc.frequency.setValueAtTime(120, now);
+                        osc.frequency.exponentialRampToValueAtTime(50, now + 0.1);
+                        gain.gain.setValueAtTime(0.2, now);
+                        gain.gain.linearRampToValueAtTime(0.01, now + 0.1);
+                    } else {
+                        osc.type = 'sawtooth';
+                        osc.frequency.setValueAtTime(60, now);
+                        gain.gain.setValueAtTime(0.15, now);
+                        gain.gain.linearRampToValueAtTime(0.01, now + 0.08);
+                    }
+
+                    osc.connect(gain);
+                    gain.connect(this.ctx.destination);
+                    osc.start(now);
+                    osc.stop(now + 0.15);
+                } catch(e) {}
+            }
+
+            startBGM(bpm) {
+                if (this.musicInterval) clearInterval(this.musicInterval);
+                const intervalMs = (60 / bpm / 2) * 1000;
+                this.step = 0;
+                const bassNotes = [110, 110, 146.83, 130.81, 98, 98, 123.47, 110];
+
+                this.musicInterval = setInterval(() => {
+                    if (this.muted || !this.ctx || gameState !== 'PLAYING') return;
+                    try {
+                        const now = this.ctx.currentTime;
+                        const osc = this.ctx.createOscillator();
+                        const gain = this.ctx.createGain();
+                        osc.type = (this.step % 4 === 0) ? 'sawtooth' : 'square';
+                        osc.frequency.setValueAtTime(bassNotes[Math.floor(this.step / 2) % bassNotes.length], now);
+                        
+                        gain.gain.setValueAtTime(0.08, now);
+                        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.18);
+
+                        osc.connect(gain);
+                        gain.connect(this.ctx.destination);
+                        osc.start(now);
+                        osc.stop(now + 0.2);
+
+                        this.step = (this.step + 1) % 16;
+                    } catch(e) {}
+                }, intervalMs);
+            }
+
+            stopBGM() {
+                if (this.musicInterval) {
+                    clearInterval(this.musicInterval);
+                    this.musicInterval = null;
+                }
+            }
+        }
+
+        const soundEngine = new SoundEngine();
+
+        let gameState = 'START';
+        let currentDifficulty = 'beginner';
+        let score = 0;
+        let combo = 0;
+        let maxCombo = 0;
+        let totalHits = 0;
+        let perfectHits = 0;
+        let goodHits = 0;
+        let missedHits = 0;
+        let notes = [];
+        let particles = [];
+        let pressAnimTimer = 0;
+        let songTimer = 0;
+        let songDuration = 45;
+
+        const difficulties = {
+            beginner: { name: 'DÉBUTANT', bpm: 90, speed: 3.5, spawnRate: 700 },
+            normal: { name: 'CONFIRMÉ', bpm: 130, speed: 5.0, spawnRate: 480 },
+            expert: { name: 'EXPERT', bpm: 175, speed: 7.0, spawnRate: 320 }
+        };
+
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        const laneKeys = ['KeyD', 'KeyF', 'KeyJ', 'KeyK'];
+        const activeKeys = [false, false, false, false];
+
+        function resizeCanvas() {
+            const rect = canvas.parentElement.getBoundingClientRect();
+            canvas.width = rect.width || window.innerWidth;
+            canvas.height = rect.height || window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+
+        // Checklist validation
+        const checkEpiAll = document.getElementById('checkEpiAll');
+        const checkPJB = document.getElementById('checkPJB');
+        const startBtn = document.getElementById('startBtn');
+
+        function updateChecklistState() {
+            const isChecked = checkEpiAll.checked && checkPJB.checked;
+            const badges = ['badgeCasque', 'badgeLunettes', 'badgeBouchon', 'badgeChaussure'];
+            
+            badges.forEach(bId => {
+                const el = document.getElementById(bId);
+                if (el) {
+                    el.className = isChecked 
+                        ? 'inline-flex items-center text-emerald-400 bg-emerald-950/50 px-2.5 py-0.5 rounded-full border border-emerald-500/30 text-[11px] transition-all'
+                        : 'inline-flex items-center text-rose-400 bg-rose-950/50 px-2.5 py-0.5 rounded-full border border-rose-500/30 text-[11px] transition-all';
+                }
+            });
+
+            if (isChecked) {
+                startBtn.disabled = false;
+                startBtn.className = 'w-full py-3.5 bg-gradient-to-r from-blue-600 to-cyan-500 hover:opacity-90 text-white font-bold rounded-xl shadow-lg glow-cyan transition-all cursor-pointer flex items-center justify-center space-x-2 text-sm';
+                startBtn.innerHTML = '<i class="fa-solid fa-play"></i><span>LANCER LA FABRICATION</span>';
+            } else {
+                startBtn.disabled = true;
+                startBtn.className = 'w-full py-3.5 bg-slate-800 text-slate-500 font-bold rounded-xl shadow-lg transition-all flex items-center justify-center space-x-2 text-sm cursor-not-allowed';
+                startBtn.innerHTML = '<i class="fa-solid fa-lock"></i><span>VALIDER LA CHECK-LIST POUR LANCER</span>';
+            }
+        }
+
+        checkEpiAll.addEventListener('change', updateChecklistState);
+        checkPJB.addEventListener('change', updateChecklistState);
+
+        document.querySelectorAll('.diff-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.diff-btn').forEach(b => b.classList.remove('border-cyan-400', 'bg-slate-800'));
+                btn.classList.add('border-cyan-400', 'bg-slate-800');
+                currentDifficulty = btn.getAttribute('data-diff');
+            });
+        });
+
+        document.getElementById('musicToggleBtn').addEventListener('click', () => {
+            const isMuted = soundEngine.toggleMute();
+            document.getElementById('musicIcon').className = isMuted ? 'fa-solid fa-volume-xmark text-rose-400' : 'fa-solid fa-volume-high text-cyan-400';
+            document.getElementById('musicStatus').textContent = isMuted ? 'SON : OFF' : 'SON : ON';
+        });
+
+        startBtn.addEventListener('click', () => {
+            if (checkEpiAll.checked && checkPJB.checked) {
+                soundEngine.init();
+                startGame();
+            }
+        });
+
+        document.getElementById('inGameRestartBtn').addEventListener('click', startGame);
+        document.getElementById('restartBtn').addEventListener('click', startGame);
+        document.getElementById('changeDiffBtn').addEventListener('click', () => {
+            document.getElementById('endScreen').classList.add('hidden');
+            document.getElementById('startScreen').classList.remove('hidden');
+        });
+
+        function startGame() {
+            document.getElementById('startScreen').classList.add('hidden');
+            document.getElementById('endScreen').classList.add('hidden');
+
+            score = 0;
+            combo = 0;
+            maxCombo = 0;
+            totalHits = 0;
+            perfectHits = 0;
+            goodHits = 0;
+            missedHits = 0;
+            notes = [];
+            particles = [];
+            songTimer = 0;
+            gameState = 'PLAYING';
+
+            resizeCanvas();
+            const config = difficulties[currentDifficulty];
+            document.getElementById('hudDiff').textContent = config.name;
+            soundEngine.startBGM(config.bpm);
+
+            if (spawnTimeout) clearTimeout(spawnTimeout);
+            spawnNotesLoop();
+        }
+
+        let spawnTimeout = null;
+        function spawnNotesLoop() {
+            if (gameState !== 'PLAYING') return;
+            const config = difficulties[currentDifficulty];
+            const lane = Math.floor(Math.random() * 4);
+            notes.push({ lane: lane, y: -40 });
+
+            songTimer += config.spawnRate / 1000;
+            if (songTimer < songDuration) {
+                spawnTimeout = setTimeout(spawnNotesLoop, config.spawnRate);
+            } else {
+                setTimeout(endGame, 3000);
+            }
+        }
+
+        function endGame() {
+            gameState = 'END';
+            soundEngine.stopBGM();
+            if (spawnTimeout) clearTimeout(spawnTimeout);
+
+            document.getElementById('finalScore').textContent = score + ' pts';
+            const total = perfectHits + goodHits + missedHits;
+            const accuracy = total > 0 ? Math.round(((perfectHits * 1.0 + goodHits * 0.5) / total) * 100) : 0;
+            document.getElementById('finalAccuracy').textContent = accuracy + '%';
+            document.getElementById('finalCombo').textContent = maxCombo + 'x';
+            
+            let grade = 'A+';
+            if (accuracy < 60) grade = 'C';
+            else if (accuracy < 80) grade = 'B';
+            else if (accuracy < 95) grade = 'A';
+            document.getElementById('finalGrade').textContent = grade;
+
+            document.getElementById('endScreen').classList.remove('hidden');
+        }
+
+        window.addEventListener('keydown', (e) => {
+            if (gameState !== 'PLAYING') return;
+            const laneIdx = laneKeys.indexOf(e.code);
+            if (laneIdx !== -1) {
+                activeKeys[laneIdx] = true;
+                checkHit(laneIdx);
+            }
+        });
+
+        window.addEventListener('keyup', (e) => {
+            const laneIdx = laneKeys.indexOf(e.code);
+            if (laneIdx !== -1) activeKeys[laneIdx] = false;
+        });
+
+        function checkHit(lane) {
+            const targetY = canvas.height - 120;
+            const hitWindow = 55;
+            let closestIdx = -1;
+            let minDst = 9999;
+
+            for (let i = 0; i < notes.length; i++) {
+                if (notes[i].lane === lane) {
+                    const dst = Math.abs(notes[i].y - targetY);
+                    if (dst < minDst) {
+                        minDst = dst;
+                        closestIdx = i;
+                    }
+                }
+            }
+
+            if (closestIdx !== -1 && minDst <= hitWindow) {
+                notes.splice(closestIdx, 1);
+                totalHits++;
+
+                if (minDst < 18) {
+                    score += 300 * (1 + Math.floor(combo / 10));
+                    combo++;
+                    perfectHits++;
+                    showJudgment('PARFAIT', '#00A3E0');
+                    soundEngine.playHitSound('perfect');
+                } else {
+                    score += 100 * (1 + Math.floor(combo / 10));
+                    combo++;
+                    goodHits++;
+                    showJudgment('BIEN', '#38bdf8');
+                    soundEngine.playHitSound('good');
+                }
+
+                pressAnimTimer = 12;
+                spawnSparks(lane, targetY);
+                if (combo > maxCombo) maxCombo = combo;
+                updateHUD();
+            }
+        }
+
+        function showJudgment(text, color) {
+            const el = document.getElementById('judgmentPopup');
+            el.textContent = text;
+            el.style.color = color;
+            el.style.transform = 'translate(-50%, -50%) scale(1.2)';
+            el.style.opacity = '1';
+            setTimeout(() => {
+                el.style.transform = 'translate(-50%, -50%) scale(1)';
+                el.style.opacity = '0';
+            }, 180);
+        }
+
+        function spawnSparks(lane, y) {
+            const laneWidth = canvas.width / 4;
+            const x = laneWidth * lane + laneWidth / 2;
+            for (let i = 0; i < 16; i++) {
+                particles.push({
+                    x: x, y: y,
+                    vx: (Math.random() - 0.5) * 10,
+                    vy: (Math.random() - 0.8) * 8,
+                    color: Math.random() > 0.5 ? '#FF5000' : '#00A3E0',
+                    life: 25
+                });
+            }
+        }
+
+        function updateHUD() {
+            document.getElementById('hudScore').textContent = String(score).padStart(6, '0');
+            document.getElementById('hudCombo').textContent = combo + 'x';
+            const progress = Math.min(100, Math.round((songTimer / songDuration) * 100));
+            document.getElementById('aiProgress').textContent = progress + '%';
+            document.getElementById('hudTemp').textContent = Math.max(850, 1250 - Math.floor(progress * 3.5)) + '°C';
+        }
+
+        // --- RENDER LOOP ---
+        function gameLoop() {
+            if (!canvas.width || !canvas.height) resizeCanvas();
+            const w = canvas.width;
+            const h = canvas.height;
+
+            ctx.clearRect(0, 0, w, h);
+
+            // 1. Background Factory Grid
+            ctx.fillStyle = '#070b19';
+            ctx.fillRect(0, 0, w, h);
+
+            ctx.strokeStyle = '#1e293b';
+            ctx.lineWidth = 1;
+            for (let y = 0; y < h; y += 40) {
+                ctx.beginPath();
+                ctx.moveTo(0, y);
+                ctx.lineTo(w, y);
+                ctx.stroke();
+            }
+
+            // 2. Industrial Furnace
+            const furnaceX = w / 2 - 130;
+            ctx.fillStyle = '#04060f';
+            ctx.fillRect(furnaceX, 30, 260, 150);
+            ctx.fillStyle = '#FF5000';
+            ctx.fillRect(furnaceX + 15, 45, 230, 120);
+            ctx.fillStyle = '#FFB800';
+            ctx.fillRect(furnaceX + 35, 60, 190, 90);
+
+            // 3. Anvil & Thick Ingot
+            const anvilY = h - 140;
+            ctx.fillStyle = '#1e293b';
+            ctx.fillRect(w / 2 - 170, anvilY, 340, 40);
+
+            const progressRatio = gameState === 'PLAYING' ? Math.min(1, (songTimer / songDuration)) : 0;
+            const ingotWidth = 220 - (progressRatio * 40);
+            const ingotHeight = 55 + (progressRatio * 20);
+            const ingotX = w / 2 - ingotWidth / 2;
+            const ingotY = anvilY - ingotHeight;
+
+            ctx.fillStyle = '#ff3300';
+            ctx.fillRect(ingotX, ingotY, ingotWidth, ingotHeight);
+            ctx.fillStyle = '#ffaa00';
+            ctx.fillRect(ingotX + 8, ingotY + 6, ingotWidth - 16, ingotHeight - 12);
+            ctx.fillStyle = '#ffff00';
+            ctx.fillRect(ingotX + 20, ingotY + 14, ingotWidth - 40, ingotHeight - 28);
+
+            // 4. Hydraulic Press
+            const pressWidth = 360;
+            const pressX = w / 2 - pressWidth / 2;
+
+            ctx.fillStyle = '#1e293b';
+            ctx.fillRect(pressX - 10, 20, pressWidth + 20, 30);
+            ctx.fillStyle = '#0055B8';
+            ctx.fillRect(pressX, 25, pressWidth, 20);
+
+            ctx.fillStyle = '#334155';
+            ctx.fillRect(pressX + 10, 50, 45, h - 190);
+            ctx.fillRect(pressX + pressWidth - 55, 50, 45, h - 190);
+
+            let pressOffsetY = 0;
+            const defaultRamY = anvilY - 185;
+            const strikeTargetY = ingotY - 65;
+
+            if (pressAnimTimer > 0) {
+                const impactProgress = Math.sin((pressAnimTimer / 12) * Math.PI);
+                pressOffsetY = impactProgress * (defaultRamY - strikeTargetY);
+                pressAnimTimer--;
+            }
+
+            const ramY = defaultRamY - pressOffsetY;
+            const pistonHeight = Math.max(10, ramY - 105);
+
+            ctx.fillStyle = '#94a3b8';
+            ctx.fillRect(pressX + 140, 105, pressWidth - 280, pistonHeight);
+
+            ctx.fillStyle = '#0f172a';
+            ctx.fillRect(pressX + 60, ramY, pressWidth - 120, 65);
+            ctx.fillStyle = '#2563eb';
+            ctx.fillRect(pressX + 70, ramY + 8, pressWidth - 140, 49);
+            ctx.fillStyle = '#ffffff';
+            ctx.font = 'bold 12px Inter, sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText('PRESSE HYDRAULIQUE', w / 2, ramY + 36);
+
+            // 5. Rhythm Notes
+            if (gameState === 'PLAYING') {
+                const config = difficulties[currentDifficulty];
+                const laneWidth = w / 4;
+
+                for (let i = notes.length - 1; i >= 0; i--) {
+                    notes[i].y += config.speed;
+
+                    if (notes[i].y > h + 40) {
+                        notes.splice(i, 1);
+                        combo = 0;
+                        missedHits++;
+                        totalHits++;
+                        showJudgment('RATÉ', '#f43f5e');
+                        soundEngine.playHitSound('miss');
+                        updateHUD();
+                        continue;
+                    }
+
+                    const nx = notes[i].lane * laneWidth + laneWidth / 2 - 28;
+                    const ny = notes[i].y;
+                    
+                    ctx.fillStyle = '#FF5000';
+                    ctx.fillRect(nx, ny - 14, 56, 28);
+                    ctx.fillStyle = '#FFF200';
+                    ctx.fillRect(nx + 4, ny - 10, 48, 20);
+                }
+            }
+
+            // 6. Particles
+            for (let i = particles.length - 1; i >= 0; i--) {
+                const p = particles[i];
+                p.x += p.vx;
+                p.y += p.vy;
+                p.vy += 0.3;
+                p.life--;
+
+                ctx.fillStyle = p.color;
+                ctx.fillRect(p.x, p.y, 4, 4);
+                if (p.life <= 0) particles.splice(i, 1);
+            }
+
+            // 7. Lanes
+            const laneWidth = w / 4;
+            const targetY = h - 120;
+
+            for (let i = 0; i < 4; i++) {
+                const lx = i * laneWidth;
+                ctx.strokeStyle = 'rgba(255, 255, 255, 0.08)';
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.moveTo(lx, 0);
+                ctx.lineTo(lx, h);
+                ctx.stroke();
+
+                const active = activeKeys[i];
+                ctx.fillStyle = active ? 'rgba(0, 163, 224, 0.25)' : 'rgba(11, 19, 43, 0.75)';
+                ctx.fillRect(lx + 8, targetY - 35, laneWidth - 16, 70);
+                ctx.strokeStyle = active ? '#00A3E0' : '#1e293b';
+                ctx.strokeRect(lx + 8, targetY - 35, laneWidth - 16, 70);
+
+                ctx.fillStyle = active ? '#00A3E0' : '#475569';
+                ctx.font = 'bold 16px JetBrains Mono, monospace';
+                ctx.fillText(['D', 'F', 'J', 'K'][i], lx + laneWidth / 2, targetY + 7);
+            }
+
+            requestAnimationFrame(gameLoop);
+        }
+
+        window.addEventListener('load', () => {
+            resizeCanvas();
+            requestAnimationFrame(gameLoop);
+        });
+        resizeCanvas();
+        requestAnimationFrame(gameLoop);
+    </script>
+</body>
+</html>
