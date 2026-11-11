@@ -185,29 +185,29 @@
             <canvas id="gameCanvas" class="absolute inset-0 w-full h-full block pixel-art"></canvas>
 
             <!-- Floating Judgment Popup Container -->
-            <div id="judgmentPopup" class="absolute top-1/4 text-xl sm:text-3xl font-black tracking-widest font-mono transition-all duration-150 opacity-0 pointer-events-none z-10 scale-90">
+            <div id="judgmentPopup" class="absolute top-1/3 text-xl sm:text-3xl font-black tracking-widest font-mono transition-all duration-150 opacity-0 pointer-events-none z-10 scale-90">
                 PARFAIT
             </div>
 
             <!-- Lane Control Hints & Touch Buttons Overlay -->
-            <div id="touchControls" class="absolute bottom-3 left-0 right-0 flex justify-center space-x-2 px-3 z-10">
+            <div id="touchControls" class="absolute bottom-2 left-0 right-0 flex justify-center space-x-2 px-3 z-10">
                 <!-- Lane 1 (D) -->
-                <div class="touch-lane flex-1 max-w-[85px] h-16 sm:h-20 rounded-xl bg-slate-900/85 border-2 border-slate-700 active:border-cyan-400 active:bg-cyan-950/40 flex flex-col items-center justify-center text-slate-300 font-mono shadow-lg cursor-pointer select-none" data-lane="0">
+                <div class="touch-lane flex-1 max-w-[80px] h-14 sm:h-16 rounded-xl bg-slate-900/85 border-2 border-slate-700 active:border-cyan-400 active:bg-cyan-950/40 flex flex-col items-center justify-center text-slate-300 font-mono shadow-lg cursor-pointer select-none" data-lane="0">
                     <span class="text-sm sm:text-base font-bold pointer-events-none">D</span>
                     <span class="text-[8px] sm:text-[9px] text-cyan-400 pointer-events-none">VOIE 1</span>
                 </div>
                 <!-- Lane 2 (F) -->
-                <div class="touch-lane flex-1 max-w-[85px] h-16 sm:h-20 rounded-xl bg-slate-900/85 border-2 border-slate-700 active:border-cyan-400 active:bg-cyan-950/40 flex flex-col items-center justify-center text-slate-300 font-mono shadow-lg cursor-pointer select-none" data-lane="1">
+                <div class="touch-lane flex-1 max-w-[80px] h-14 sm:h-16 rounded-xl bg-slate-900/85 border-2 border-slate-700 active:border-cyan-400 active:bg-cyan-950/40 flex flex-col items-center justify-center text-slate-300 font-mono shadow-lg cursor-pointer select-none" data-lane="1">
                     <span class="text-sm sm:text-base font-bold pointer-events-none">F</span>
                     <span class="text-[8px] sm:text-[9px] text-cyan-400 pointer-events-none">VOIE 2</span>
                 </div>
                 <!-- Lane 3 (J) -->
-                <div class="touch-lane flex-1 max-w-[85px] h-16 sm:h-20 rounded-xl bg-slate-900/85 border-2 border-slate-700 active:border-cyan-400 active:bg-cyan-950/40 flex flex-col items-center justify-center text-slate-300 font-mono shadow-lg cursor-pointer select-none" data-lane="2">
+                <div class="touch-lane flex-1 max-w-[80px] h-14 sm:h-16 rounded-xl bg-slate-900/85 border-2 border-slate-700 active:border-cyan-400 active:bg-cyan-950/40 flex flex-col items-center justify-center text-slate-300 font-mono shadow-lg cursor-pointer select-none" data-lane="2">
                     <span class="text-sm sm:text-base font-bold pointer-events-none">J</span>
                     <span class="text-[8px] sm:text-[9px] text-cyan-400 pointer-events-none">VOIE 3</span>
                 </div>
                 <!-- Lane 4 (K) -->
-                <div class="touch-lane flex-1 max-w-[85px] h-16 sm:h-20 rounded-xl bg-slate-900/85 border-2 border-slate-700 active:border-cyan-400 active:bg-cyan-950/40 flex flex-col items-center justify-center text-slate-300 font-mono shadow-lg cursor-pointer select-none" data-lane="3">
+                <div class="touch-lane flex-1 max-w-[80px] h-14 sm:h-16 rounded-xl bg-slate-900/85 border-2 border-slate-700 active:border-cyan-400 active:bg-cyan-950/40 flex flex-col items-center justify-center text-slate-300 font-mono shadow-lg cursor-pointer select-none" data-lane="3">
                     <span class="text-sm sm:text-base font-bold pointer-events-none">K</span>
                     <span class="text-[8px] sm:text-[9px] text-cyan-400 pointer-events-none">VOIE 4</span>
                 </div>
@@ -551,7 +551,7 @@
         });
 
         function checkHit(lane) {
-            const targetY = canvas.height - 120;
+            const targetY = canvas.height - 95;
             const hitWindow = 55;
             let closestIdx = -1;
             let minDst = 9999;
@@ -646,44 +646,44 @@
                 ctx.stroke();
             }
 
-            // 2. Anvil & Thick Ingot (Enclume et Lingot incandescent en bas)
-            const anvilWidth = Math.min(340, w - 20);
-            const anvilY = h - 140;
+            // 2. Anvil & Thick Ingot (Enclume et Lingot incandescent remontés)
+            const anvilWidth = Math.min(300, w - 20);
+            const anvilY = h - 110;
             ctx.fillStyle = '#1e293b';
-            ctx.fillRect(w / 2 - anvilWidth / 2, anvilY, anvilWidth, 35);
+            ctx.fillRect(w / 2 - anvilWidth / 2, anvilY, anvilWidth, 28);
 
             const progressRatio = gameState === 'PLAYING' ? Math.min(1, (songTimer / songDuration)) : 0;
-            const maxIngotW = Math.min(220, anvilWidth - 80);
-            const ingotWidth = maxIngotW - (progressRatio * 30);
-            const ingotHeight = 45 + (progressRatio * 15);
+            const maxIngotW = Math.min(190, anvilWidth - 70);
+            const ingotWidth = maxIngotW - (progressRatio * 25);
+            const ingotHeight = 38 + (progressRatio * 12);
             const ingotX = w / 2 - ingotWidth / 2;
             const ingotY = anvilY - ingotHeight;
 
             ctx.fillStyle = '#ff3300';
             ctx.fillRect(ingotX, ingotY, ingotWidth, ingotHeight);
             ctx.fillStyle = '#ffaa00';
-            ctx.fillRect(ingotX + 6, ingotY + 5, ingotWidth - 12, ingotHeight - 10);
+            ctx.fillRect(ingotX + 5, ingotY + 4, ingotWidth - 10, ingotHeight - 8);
             ctx.fillStyle = '#ffff00';
-            ctx.fillRect(ingotX + 15, ingotY + 10, ingotWidth - 30, ingotHeight - 20);
+            ctx.fillRect(ingotX + 12, ingotY + 8, ingotWidth - 24, ingotHeight - 16);
 
-            // 3. Hydraulic Press (Entièrement Gris Acier / Neutre, sans aucun jaune/orange)
-            const pressWidth = Math.min(360, w - 20);
+            // 3. Compact Hydraulic Press (Gris Acier)
+            const pressWidth = Math.min(320, w - 20);
             const pressX = w / 2 - pressWidth / 2;
 
-            // Chapeau supérieur de la presse (Gris acier sombre)
+            // Chapeau supérieur compact
             ctx.fillStyle = '#1e293b';
-            ctx.fillRect(pressX - 5, 5, pressWidth + 10, 22);
+            ctx.fillRect(pressX - 4, 2, pressWidth + 8, 18);
             ctx.fillStyle = '#334155';
-            ctx.fillRect(pressX, 7, pressWidth, 15);
+            ctx.fillRect(pressX, 4, pressWidth, 12);
 
-            // Montants verticaux (Gris acier)
+            // Montants verticaux raccourcis
             ctx.fillStyle = '#475569';
-            ctx.fillRect(pressX + 8, 22, 30, h - 165);
-            ctx.fillRect(pressX + pressWidth - 38, 22, 30, h - 165);
+            ctx.fillRect(pressX + 6, 16, 24, h - 135);
+            ctx.fillRect(pressX + pressWidth - 30, 16, 24, h - 135);
 
             let pressOffsetY = 0;
-            const defaultRamY = anvilY - 145;
-            const strikeTargetY = ingotY - 50;
+            const defaultRamY = anvilY - 115;
+            const strikeTargetY = ingotY - 40;
 
             if (pressAnimTimer > 0) {
                 const impactProgress = Math.sin((pressAnimTimer / 12) * Math.PI);
@@ -692,23 +692,23 @@
             }
 
             const ramY = defaultRamY - pressOffsetY;
-            const pistonHeight = Math.max(10, ramY - 50);
+            const pistonHeight = Math.max(8, ramY - 35);
 
-            // Piston central (Gris métallique)
+            // Piston central
             ctx.fillStyle = '#64748b';
-            ctx.fillRect(pressX + 100, 50, pressWidth - 200, pistonHeight);
+            ctx.fillRect(pressX + 90, 35, pressWidth - 180, pistonHeight);
 
-            // Coulisseau / Bloc de frappe de la presse (Gris acier neutre)
+            // Coulisseau / Bloc de frappe compact
             ctx.fillStyle = '#334155';
-            ctx.fillRect(pressX + 45, ramY, pressWidth - 90, 45);
+            ctx.fillRect(pressX + 35, ramY, pressWidth - 70, 38);
             ctx.fillStyle = '#475569';
-            ctx.fillRect(pressX + 52, ramY + 5, pressWidth - 104, 35);
+            ctx.fillRect(pressX + 40, ramY + 4, pressWidth - 80, 30);
             ctx.fillStyle = '#ffffff';
-            ctx.font = 'bold 11px Inter, sans-serif';
+            ctx.font = 'bold 10px Inter, sans-serif';
             ctx.textAlign = 'center';
-            ctx.fillText('PRESSE HYDRAULIQUE', w / 2, ramY + 26);
+            ctx.fillText('PRESSE HYDRAULIQUE', w / 2, ramY + 22);
 
-            // 4. Rhythm Notes
+            // 4. Rhythm Notes (Briques)
             if (gameState === 'PLAYING') {
                 const config = difficulties[currentDifficulty];
                 const laneWidth = w / 4;
@@ -716,7 +716,7 @@
                 for (let i = notes.length - 1; i >= 0; i--) {
                     notes[i].y += config.speed;
 
-                    if (notes[i].y > h + 40) {
+                    if (notes[i].y > h + 30) {
                         notes.splice(i, 1);
                         combo = 0;
                         missedHits++;
@@ -727,13 +727,13 @@
                         continue;
                     }
 
-                    const nx = notes[i].lane * laneWidth + laneWidth / 2 - 24;
+                    const nx = notes[i].lane * laneWidth + laneWidth / 2 - 20;
                     const ny = notes[i].y;
                     
                     ctx.fillStyle = '#FF5000';
-                    ctx.fillRect(nx, ny - 12, 48, 24);
+                    ctx.fillRect(nx, ny - 10, 40, 20);
                     ctx.fillStyle = '#FFF200';
-                    ctx.fillRect(nx + 3, ny - 9, 42, 18);
+                    ctx.fillRect(nx + 3, ny - 7, 34, 14);
                 }
             }
 
@@ -750,9 +750,9 @@
                 if (p.life <= 0) particles.splice(i, 1);
             }
 
-            // 6. Lanes
+            // 6. Lanes (Voies plus compactes)
             const laneWidth = w / 4;
-            const targetY = h - 120;
+            const targetY = h - 95;
 
             for (let i = 0; i < 4; i++) {
                 const lx = i * laneWidth;
@@ -765,13 +765,13 @@
 
                 const active = activeKeys[i];
                 ctx.fillStyle = active ? 'rgba(0, 163, 224, 0.25)' : 'rgba(11, 19, 43, 0.75)';
-                ctx.fillRect(lx + 4, targetY - 30, laneWidth - 8, 60);
+                ctx.fillRect(lx + 3, targetY - 25, laneWidth - 6, 50);
                 ctx.strokeStyle = active ? '#00A3E0' : '#1e293b';
-                ctx.strokeRect(lx + 4, targetY - 30, laneWidth - 8, 60);
+                ctx.strokeRect(lx + 3, targetY - 25, laneWidth - 6, 50);
 
                 ctx.fillStyle = active ? '#00A3E0' : '#475569';
-                ctx.font = 'bold 14px JetBrains Mono, monospace';
-                ctx.fillText(['D', 'F', 'J', 'K'][i], lx + laneWidth / 2, targetY + 5);
+                ctx.font = 'bold 13px JetBrains Mono, monospace';
+                ctx.fillText(['D', 'F', 'J', 'K'][i], lx + laneWidth / 2, targetY + 4);
             }
 
             requestAnimationFrame(gameLoop);
