@@ -2,7 +2,7 @@
 <html lang="fr" class="h-full">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Forge Hero</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -33,7 +33,7 @@
         }
     </script>
     <style>
-        body { font-family: 'Inter', sans-serif; }
+        body { font-family: 'Inter', sans-serif; touch-action: manipulation; }
         .glow-cyan { box-shadow: 0 0 25px rgba(0, 163, 224, 0.4); }
         .glow-orange { box-shadow: 0 0 25px rgba(255, 80, 0, 0.5); }
         .pixel-art { image-rendering: pixelated; image-rendering: crisp-edges; }
@@ -42,99 +42,99 @@
 <body class="bg-slate-950 text-slate-100 h-full flex flex-col overflow-hidden select-none">
 
     <!-- Top Header -->
-    <header class="bg-slate-900 border-b border-slate-800 px-4 py-2 flex items-center justify-between shrink-0 z-20 shadow-lg">
-        <div class="flex items-center space-x-3">
-            <div class="bg-blue-600 text-white px-3 py-1 rounded font-black tracking-wider text-sm flex items-center space-x-2 shadow">
+    <header class="bg-slate-900 border-b border-slate-800 px-3 py-2 flex items-center justify-between shrink-0 z-20 shadow-lg">
+        <div class="flex items-center space-x-2">
+            <div class="bg-blue-600 text-white px-2.5 py-1 rounded font-black tracking-wider text-xs sm:text-sm flex items-center space-x-1.5 shadow">
                 <i class="fa-solid fa-industry text-cyan-400"></i>
                 <span>FORGE HERO</span>
             </div>
-            <span class="text-xs text-slate-400 font-medium hidden sm:inline">Atelier de Forge & Industrie 4.0</span>
+            <span class="text-[11px] text-slate-400 font-medium hidden md:inline">Atelier de Forge & Industrie 4.0</span>
         </div>
 
         <!-- EPI / Safety Check Indicator Badges -->
-        <div class="flex items-center space-x-2 bg-slate-800/80 px-3 py-1.5 rounded-full border border-slate-700 text-xs">
-            <button id="musicToggleBtn" class="flex items-center space-x-1.5 bg-slate-900 hover:bg-slate-700 text-cyan-400 px-2.5 py-1 rounded-full border border-cyan-500/40 text-[11px] font-mono transition mr-1">
+        <div class="flex items-center space-x-1.5 bg-slate-800/80 px-2.5 py-1 rounded-full border border-slate-700 text-[10px] sm:text-xs">
+            <button id="musicToggleBtn" class="flex items-center space-x-1 bg-slate-900 hover:bg-slate-700 text-cyan-400 px-2 py-1 rounded-full border border-cyan-500/40 text-[10px] font-mono transition mr-1">
                 <i id="musicIcon" class="fa-solid fa-volume-high"></i>
-                <span id="musicStatus">SON : ON</span>
+                <span id="musicStatus" class="hidden sm:inline">SON : ON</span>
             </button>
             
-            <span class="text-slate-400 text-[11px] font-semibold uppercase hidden lg:inline mr-1">EPI :</span>
+            <span class="text-slate-400 text-[10px] font-semibold uppercase hidden lg:inline mr-1">EPI :</span>
             
             <div class="relative group cursor-pointer">
-                <span id="badgeCasque" class="inline-flex items-center text-rose-400 bg-rose-950/50 px-2 py-0.5 rounded-full border border-rose-500/30 text-[11px]">
-                    <i class="fa-solid fa-hard-hat mr-1"></i> Casque
+                <span id="badgeCasque" class="inline-flex items-center text-rose-400 bg-rose-950/50 px-1.5 py-0.5 rounded-full border border-rose-500/30 text-[10px]">
+                    <i class="fa-solid fa-hard-hat sm:mr-1"></i><span class="hidden sm:inline">Casque</span>
                 </span>
             </div>
 
             <div class="relative group cursor-pointer">
-                <span id="badgeLunettes" class="inline-flex items-center text-rose-400 bg-rose-950/50 px-2 py-0.5 rounded-full border border-rose-500/30 text-[11px]">
-                    <i class="fa-solid fa-glasses mr-1"></i> Lunettes
+                <span id="badgeLunettes" class="inline-flex items-center text-rose-400 bg-rose-950/50 px-1.5 py-0.5 rounded-full border border-rose-500/30 text-[10px]">
+                    <i class="fa-solid fa-glasses sm:mr-1"></i><span class="hidden sm:inline">Lunettes</span>
                 </span>
             </div>
 
             <div class="relative group cursor-pointer">
-                <span id="badgeBouchon" class="inline-flex items-center text-rose-400 bg-rose-950/50 px-2 py-0.5 rounded-full border border-rose-500/30 text-[11px]">
-                    <i class="fa-solid fa-ear-deaf mr-1"></i> Bouchon
+                <span id="badgeBouchon" class="inline-flex items-center text-rose-400 bg-rose-950/50 px-1.5 py-0.5 rounded-full border border-rose-500/30 text-[10px]">
+                    <i class="fa-solid fa-ear-deaf sm:mr-1"></i><span class="hidden sm:inline">Bouchon</span>
                 </span>
             </div>
 
             <div class="relative group cursor-pointer">
-                <span id="badgeChaussure" class="inline-flex items-center text-rose-400 bg-rose-950/50 px-2 py-0.5 rounded-full border border-rose-500/30 text-[11px]">
-                    <i class="fa-solid fa-shoe-prints mr-1"></i> Chaussure
+                <span id="badgeChaussure" class="inline-flex items-center text-rose-400 bg-rose-950/50 px-1.5 py-0.5 rounded-full border border-rose-500/30 text-[10px]">
+                    <i class="fa-solid fa-shoe-prints sm:mr-1"></i><span class="hidden sm:inline">Chaussure</span>
                 </span>
             </div>
         </div>
     </header>
 
     <!-- Main Game Container -->
-    <div class="flex-1 flex flex-col md:flex-row relative overflow-hidden">
+    <div class="flex-1 flex flex-col lg:flex-row relative overflow-hidden">
 
         <!-- START SCREEN OVERLAY WITH MANDATORY SAFETY CHECKLIST -->
-        <div id="startScreen" class="absolute inset-0 bg-slate-950/90 backdrop-blur-md z-30 flex items-center justify-center p-4 overflow-y-auto">
-            <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-xl w-full p-6 shadow-2xl text-center">
-                <div class="inline-flex p-3 bg-blue-600/20 text-cyan-400 rounded-2xl mb-4 border border-blue-500/30 glow-cyan">
-                    <i class="fa-solid fa-hammer text-3xl"></i>
+        <div id="startScreen" class="absolute inset-0 bg-slate-950/90 backdrop-blur-md z-30 flex items-center justify-center p-3 overflow-y-auto">
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-xl w-full p-5 sm:p-6 shadow-2xl text-center my-auto">
+                <div class="inline-flex p-3 bg-blue-600/20 text-cyan-400 rounded-2xl mb-3 border border-blue-500/30 glow-cyan">
+                    <i class="fa-solid fa-hammer text-2xl sm:text-3xl"></i>
                 </div>
-                <h1 class="text-2xl font-black tracking-wide text-white mb-1">FORGE HERO</h1>
-                <p class="text-slate-400 text-xs mb-5">Jeu de rythme & simulation de forge industrielle avec assistance IA</p>
+                <h1 class="text-xl sm:text-2xl font-black tracking-wide text-white mb-1">FORGE HERO</h1>
+                <p class="text-slate-400 text-xs mb-4">Jeu de rythme & simulation industrielle (Tactile & Clavier)</p>
 
                 <!-- Difficulty Selection -->
-                <div class="grid grid-cols-3 gap-2.5 mb-5">
-                    <button class="diff-btn border border-cyan-400 bg-slate-800 rounded-xl p-3 text-left transition hover:border-cyan-400 cursor-pointer" data-diff="beginner">
-                        <div class="text-xs font-bold text-cyan-400 font-mono">DÉBUTANT</div>
-                        <div class="text-[10px] text-slate-400">90 BPM • Calme</div>
+                <div class="grid grid-cols-3 gap-2 mb-4">
+                    <button class="diff-btn border border-cyan-400 bg-slate-800 rounded-xl p-2.5 text-left transition hover:border-cyan-400 cursor-pointer" data-diff="beginner">
+                        <div class="text-[11px] sm:text-xs font-bold text-cyan-400 font-mono">DÉBUTANT</div>
+                        <div class="text-[9px] sm:text-[10px] text-slate-400">90 BPM</div>
                     </button>
-                    <button class="diff-btn border border-slate-700 bg-slate-950 rounded-xl p-3 text-left transition hover:border-cyan-400 cursor-pointer" data-diff="normal">
-                        <div class="text-xs font-bold text-slate-200 font-mono">CONFIRMÉ</div>
-                        <div class="text-[10px] text-slate-400">130 BPM • Standard</div>
+                    <button class="diff-btn border border-slate-700 bg-slate-950 rounded-xl p-2.5 text-left transition hover:border-cyan-400 cursor-pointer" data-diff="normal">
+                        <div class="text-[11px] sm:text-xs font-bold text-slate-200 font-mono">CONFIRMÉ</div>
+                        <div class="text-[9px] sm:text-[10px] text-slate-400">130 BPM</div>
                     </button>
-                    <button class="diff-btn border border-slate-700 bg-slate-950 rounded-xl p-3 text-left transition hover:border-cyan-400 cursor-pointer" data-diff="expert">
-                        <div class="text-xs font-bold text-slate-200 font-mono">EXPERT</div>
-                        <div class="text-[10px] text-slate-400">175 BPM • Intense</div>
+                    <button class="diff-btn border border-slate-700 bg-slate-950 rounded-xl p-2.5 text-left transition hover:border-cyan-400 cursor-pointer" data-diff="expert">
+                        <div class="text-[11px] sm:text-xs font-bold text-slate-200 font-mono">EXPERT</div>
+                        <div class="text-[9px] sm:text-[10px] text-slate-400">175 BPM</div>
                     </button>
                 </div>
 
                 <!-- PRE-JOB BRIEFING & SAFETY CHECK-LIST -->
-                <div class="mb-5 bg-slate-950/80 border border-slate-800 rounded-xl p-4 text-left space-y-2.5">
-                    <div class="flex items-center justify-between text-xs font-mono text-cyan-400 border-b border-slate-800 pb-1.5">
+                <div class="mb-4 bg-slate-950/80 border border-slate-800 rounded-xl p-3 text-left space-y-2">
+                    <div class="flex items-center justify-between text-[11px] sm:text-xs font-mono text-cyan-400 border-b border-slate-800 pb-1.5">
                         <span class="font-bold flex items-center"><i class="fa-solid fa-clipboard-check mr-1.5 text-orange-400"></i> PRÉ-JOB BRIEFING (SÉCURITÉ)</span>
-                        <span class="text-[10px] text-orange-400">OBLIGATOIRE</span>
+                        <span class="text-[9px] text-orange-400">OBLIGATOIRE</span>
                     </div>
-                    <p class="text-[11px] text-slate-400">Cochez les points de contrôle réglementaires pour valider votre mise en conformité avant de démarrer la forge :</p>
+                    <p class="text-[10px] sm:text-[11px] text-slate-400">Cochez les points de contrôle réglementaires pour valider votre mise en conformité :</p>
                     
-                    <div class="space-y-2 pt-1">
-                        <label class="flex items-start space-x-2.5 cursor-pointer text-xs text-slate-300 hover:text-white">
-                            <input type="checkbox" id="checkEpiAll" class="mt-0.5 accent-blue-600 w-4 h-4 rounded cursor-pointer">
+                    <div class="space-y-1.5 pt-0.5">
+                        <label class="flex items-start space-x-2 cursor-pointer text-[11px] sm:text-xs text-slate-300 hover:text-white">
+                            <input type="checkbox" id="checkEpiAll" class="mt-0.5 accent-blue-600 w-4 h-4 rounded cursor-pointer shrink-0">
                             <span>Vérification complète des EPI (Casque, Lunettes, Bouchons, Chaussures).</span>
                         </label>
-                        <label class="flex items-start space-x-2.5 cursor-pointer text-xs text-slate-300 hover:text-white">
-                            <input type="checkbox" id="checkPJB" class="mt-0.5 accent-blue-600 w-4 h-4 rounded cursor-pointer">
-                            <span>Réalisation du Pré-Job Briefing (PJB) et analyse des risques thermiques.</span>
+                        <label class="flex items-start space-x-2 cursor-pointer text-[11px] sm:text-xs text-slate-300 hover:text-white">
+                            <input type="checkbox" id="checkPJB" class="mt-0.5 accent-blue-600 w-4 h-4 rounded cursor-pointer shrink-0">
+                            <span>Réalisation du Pré-Job Briefing (PJB) et analyse des risques.</span>
                         </label>
                     </div>
                 </div>
 
-                <button id="startBtn" disabled class="w-full py-3.5 bg-slate-800 text-slate-500 font-bold rounded-xl shadow-lg transition-all flex items-center justify-center space-x-2 text-sm cursor-not-allowed">
+                <button id="startBtn" disabled class="w-full py-3 bg-slate-800 text-slate-500 font-bold rounded-xl shadow-lg transition-all flex items-center justify-center space-x-2 text-xs sm:text-sm cursor-not-allowed">
                     <i class="fa-solid fa-lock"></i>
                     <span>VALIDER LA CHECK-LIST POUR LANCER</span>
                 </button>
@@ -142,35 +142,35 @@
         </div>
 
         <!-- END GAME SUMMARY OVERLAY -->
-        <div id="endScreen" class="absolute inset-0 bg-slate-950/90 backdrop-blur-md z-30 hidden flex items-center justify-center p-4">
-            <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-lg w-full p-6 shadow-2xl text-center">
+        <div id="endScreen" class="absolute inset-0 bg-slate-950/90 backdrop-blur-md z-30 hidden flex items-center justify-center p-3">
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-lg w-full p-5 sm:p-6 shadow-2xl text-center my-auto">
                 <div class="inline-flex p-3 bg-emerald-500/20 text-emerald-400 rounded-2xl mb-3 border border-emerald-500/30">
-                    <i class="fa-solid fa-award text-3xl"></i>
+                    <i class="fa-solid fa-award text-2xl sm:text-3xl"></i>
                 </div>
-                <h2 class="text-xl font-black text-white mb-1">PIÈCE FORGÉE AVEC SUCCÈS !</h2>
-                <p class="text-slate-400 text-xs mb-5">Contrôle qualité validé</p>
+                <h2 class="text-lg sm:text-xl font-black text-white mb-1">PIÈCE FORGÉE AVEC SUCCÈS !</h2>
+                <p class="text-slate-400 text-xs mb-4">Rotor industriel de haute précision - Contrôle qualité validé</p>
 
-                <div class="grid grid-cols-2 gap-3 mb-5 text-left">
-                    <div class="bg-slate-950 p-3 rounded-xl border border-slate-800">
-                        <div class="text-[10px] text-slate-400 font-mono">SCORE FINAL</div>
-                        <div id="finalScore" class="text-lg font-black font-mono text-cyan-400">0 pts</div>
+                <div class="grid grid-cols-2 gap-2.5 mb-4 text-left">
+                    <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800">
+                        <div class="text-[9px] sm:text-[10px] text-slate-400 font-mono">SCORE FINAL</div>
+                        <div id="finalScore" class="text-base sm:text-lg font-black font-mono text-cyan-400">0 pts</div>
                     </div>
-                    <div class="bg-slate-950 p-3 rounded-xl border border-slate-800">
-                        <div class="text-[10px] text-slate-400 font-mono">PRÉCISION</div>
-                        <div id="finalAccuracy" class="text-lg font-black font-mono text-emerald-400">0%</div>
+                    <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800">
+                        <div class="text-[9px] sm:text-[10px] text-slate-400 font-mono">PRÉCISION</div>
+                        <div id="finalAccuracy" class="text-base sm:text-lg font-black font-mono text-emerald-400">0%</div>
                     </div>
-                    <div class="bg-slate-950 p-3 rounded-xl border border-slate-800">
-                        <div class="text-[10px] text-slate-400 font-mono">COMBO MAX</div>
-                        <div id="finalCombo" class="text-lg font-black font-mono text-orange-400">0x</div>
+                    <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800">
+                        <div class="text-[9px] sm:text-[10px] text-slate-400 font-mono">COMBO MAX</div>
+                        <div id="finalCombo" class="text-base sm:text-lg font-black font-mono text-orange-400">0x</div>
                     </div>
-                    <div class="bg-slate-950 p-3 rounded-xl border border-slate-800">
-                        <div class="text-[10px] text-slate-400 font-mono">NOTE QUALITÉ</div>
-                        <div id="finalGrade" class="text-lg font-black font-mono text-amber-400">A+</div>
+                    <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800">
+                        <div class="text-[9px] sm:text-[10px] text-slate-400 font-mono">NOTE QUALITÉ</div>
+                        <div id="finalGrade" class="text-base sm:text-lg font-black font-mono text-amber-400">A+</div>
                     </div>
                 </div>
 
-                <div class="flex space-x-3">
-                    <button id="restartBtn" class="flex-1 py-3 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-bold rounded-xl shadow-lg hover:opacity-90 transition cursor-pointer">
+                <div class="flex space-x-2.5">
+                    <button id="restartBtn" class="flex-1 py-3 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-bold text-xs sm:text-sm rounded-xl shadow-lg hover:opacity-90 transition cursor-pointer">
                         <i class="fa-solid fa-rotate-right mr-1.5"></i> RECOMMENCER
                     </button>
                     <button id="changeDiffBtn" class="px-4 py-3 bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold rounded-xl transition text-xs cursor-pointer">
@@ -185,67 +185,71 @@
             <canvas id="gameCanvas" class="absolute inset-0 w-full h-full block pixel-art"></canvas>
 
             <!-- Floating Judgment Popup Container -->
-            <div id="judgmentPopup" class="absolute top-1/4 text-2xl md:text-3xl font-black tracking-widest font-mono transition-all duration-150 opacity-0 pointer-events-none z-10 scale-90">
+            <div id="judgmentPopup" class="absolute top-1/4 text-xl sm:text-3xl font-black tracking-widest font-mono transition-all duration-150 opacity-0 pointer-events-none z-10 scale-90">
                 PARFAIT
             </div>
 
-            <!-- Lane Control Hints Overlay -->
-            <div class="absolute bottom-4 left-0 right-0 flex justify-center space-x-3 z-10 pointer-events-none">
-                <div class="w-14 h-14 rounded-xl bg-slate-900/80 border-2 border-slate-700 flex flex-col items-center justify-center text-slate-300 font-mono shadow-lg">
-                    <span class="text-base font-bold">D</span>
-                    <span class="text-[9px] text-cyan-400">VOIE 1</span>
+            <!-- Lane Control Hints & Touch Buttons Overlay -->
+            <div id="touchControls" class="absolute bottom-3 left-0 right-0 flex justify-center space-x-2 px-3 z-10">
+                <!-- Lane 1 (D) -->
+                <div class="touch-lane flex-1 max-w-[85px] h-16 sm:h-20 rounded-xl bg-slate-900/85 border-2 border-slate-700 active:border-cyan-400 active:bg-cyan-950/40 flex flex-col items-center justify-center text-slate-300 font-mono shadow-lg cursor-pointer select-none" data-lane="0">
+                    <span class="text-sm sm:text-base font-bold pointer-events-none">D</span>
+                    <span class="text-[8px] sm:text-[9px] text-cyan-400 pointer-events-none">VOIE 1</span>
                 </div>
-                <div class="w-14 h-14 rounded-xl bg-slate-900/80 border-2 border-slate-700 flex flex-col items-center justify-center text-slate-300 font-mono shadow-lg">
-                    <span class="text-base font-bold">F</span>
-                    <span class="text-[9px] text-cyan-400">VOIE 2</span>
+                <!-- Lane 2 (F) -->
+                <div class="touch-lane flex-1 max-w-[85px] h-16 sm:h-20 rounded-xl bg-slate-900/85 border-2 border-slate-700 active:border-cyan-400 active:bg-cyan-950/40 flex flex-col items-center justify-center text-slate-300 font-mono shadow-lg cursor-pointer select-none" data-lane="1">
+                    <span class="text-sm sm:text-base font-bold pointer-events-none">F</span>
+                    <span class="text-[8px] sm:text-[9px] text-cyan-400 pointer-events-none">VOIE 2</span>
                 </div>
-                <div class="w-14 h-14 rounded-xl bg-slate-900/80 border-2 border-slate-700 flex flex-col items-center justify-center text-slate-300 font-mono shadow-lg">
-                    <span class="text-base font-bold">J</span>
-                    <span class="text-[9px] text-cyan-400">VOIE 3</span>
+                <!-- Lane 3 (J) -->
+                <div class="touch-lane flex-1 max-w-[85px] h-16 sm:h-20 rounded-xl bg-slate-900/85 border-2 border-slate-700 active:border-cyan-400 active:bg-cyan-950/40 flex flex-col items-center justify-center text-slate-300 font-mono shadow-lg cursor-pointer select-none" data-lane="2">
+                    <span class="text-sm sm:text-base font-bold pointer-events-none">J</span>
+                    <span class="text-[8px] sm:text-[9px] text-cyan-400 pointer-events-none">VOIE 3</span>
                 </div>
-                <div class="w-14 h-14 rounded-xl bg-slate-900/80 border-2 border-slate-700 flex flex-col items-center justify-center text-slate-300 font-mono shadow-lg">
-                    <span class="text-base font-bold">K</span>
-                    <span class="text-[9px] text-cyan-400">VOIE 4</span>
+                <!-- Lane 4 (K) -->
+                <div class="touch-lane flex-1 max-w-[85px] h-16 sm:h-20 rounded-xl bg-slate-900/85 border-2 border-slate-700 active:border-cyan-400 active:bg-cyan-950/40 flex flex-col items-center justify-center text-slate-300 font-mono shadow-lg cursor-pointer select-none" data-lane="3">
+                    <span class="text-sm sm:text-base font-bold pointer-events-none">K</span>
+                    <span class="text-[8px] sm:text-[9px] text-cyan-400 pointer-events-none">VOIE 4</span>
                 </div>
             </div>
         </div>
 
         <!-- RIGHT SIDE: Industrial HUD & AI Assistant Panel -->
-        <div class="w-full md:w-80 bg-slate-900/95 p-4 flex flex-col justify-between shrink-0 border-t md:border-t-0 md:border-l border-slate-800 z-20">
-            <div class="space-y-3">
+        <div class="w-full lg:w-80 bg-slate-900/95 p-3 sm:p-4 flex flex-col justify-between shrink-0 border-t lg:border-t-0 lg:border-l border-slate-800 z-20">
+            <div class="grid grid-cols-2 lg:grid-cols-1 gap-2.5 mb-3 lg:mb-0 lg:space-y-3">
                 <div class="flex items-center justify-between border-b border-slate-800 pb-2">
-                    <span class="text-xs font-mono text-slate-400">SCORE</span>
-                    <span id="hudScore" class="text-lg font-black font-mono text-cyan-400">000000</span>
+                    <span class="text-[11px] sm:text-xs font-mono text-slate-400">SCORE</span>
+                    <span id="hudScore" class="text-base sm:text-lg font-black font-mono text-cyan-400">000000</span>
                 </div>
 
                 <div class="flex items-center justify-between border-b border-slate-800 pb-2">
-                    <span class="text-xs font-mono text-slate-400">COMBO</span>
-                    <span id="hudCombo" class="text-lg font-black font-mono text-orange-400">0x</span>
+                    <span class="text-[11px] sm:text-xs font-mono text-slate-400">COMBO</span>
+                    <span id="hudCombo" class="text-base sm:text-lg font-black font-mono text-orange-400">0x</span>
                 </div>
 
                 <div class="flex items-center justify-between border-b border-slate-800 pb-2">
-                    <span class="text-xs font-mono text-slate-400">TEMPÉRATURE LINGOT</span>
-                    <span id="hudTemp" class="text-sm font-black font-mono text-amber-500">1250°C</span>
+                    <span class="text-[11px] sm:text-xs font-mono text-slate-400">TEMPÉRATURE LINGOT</span>
+                    <span id="hudTemp" class="text-xs sm:text-sm font-black font-mono text-amber-500">1250°C</span>
                 </div>
 
                 <div class="flex items-center justify-between border-b border-slate-800 pb-2">
-                    <span class="text-xs font-mono text-slate-400">DIFFICULTÉ</span>
-                    <span id="hudDiff" class="text-xs font-bold font-mono text-emerald-400">DÉBUTANT</span>
+                    <span class="text-[11px] sm:text-xs font-mono text-slate-400">DIFFICULTÉ</span>
+                    <span id="hudDiff" class="text-[11px] sm:text-xs font-bold font-mono text-emerald-400">DÉBUTANT</span>
                 </div>
             </div>
 
             <!-- AI Process Assistant Panel -->
-            <div class="my-4 bg-slate-950 border border-slate-800 rounded-xl p-3">
-                <div class="flex items-center justify-between mb-2">
-                    <span class="text-[11px] font-mono font-bold text-cyan-400 flex items-center">
+            <div class="my-2.5 lg:my-4 bg-slate-950 border border-slate-800 rounded-xl p-3">
+                <div class="flex items-center justify-between mb-1.5">
+                    <span class="text-[10px] sm:text-[11px] font-mono font-bold text-cyan-400 flex items-center">
                         <i class="fa-solid fa-microchip mr-1.5 text-cyan-400"></i> ASSISTANT IA FORGE
                     </span>
                     <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
                 </div>
-                <p id="aiMessage" class="text-[11px] text-slate-300 font-sans leading-relaxed">
+                <p id="aiMessage" class="text-[10px] sm:text-[11px] text-slate-300 font-sans leading-relaxed">
                     Presse prête. Attente du top départ. Respectez les cadences de frappe pour garantir l'homogénéité du métal.
                 </p>
-                <div class="mt-2.5 pt-2 border-t border-slate-800/80 flex justify-between text-[10px] font-mono text-slate-400">
+                <div class="mt-2 pt-2 border-t border-slate-800/80 flex justify-between text-[10px] font-mono text-slate-400">
                     <span>Pressage: <strong id="aiProgress" class="text-cyan-400">0%</strong></span>
                     <span>Optimisation: <strong class="text-emerald-400">99.2%</strong></span>
                 </div>
@@ -401,18 +405,18 @@
                 const el = document.getElementById(bId);
                 if (el) {
                     el.className = isChecked 
-                        ? 'inline-flex items-center text-emerald-400 bg-emerald-950/50 px-2.5 py-0.5 rounded-full border border-emerald-500/30 text-[11px] transition-all'
-                        : 'inline-flex items-center text-rose-400 bg-rose-950/50 px-2.5 py-0.5 rounded-full border border-rose-500/30 text-[11px] transition-all';
+                        ? 'inline-flex items-center text-emerald-400 bg-emerald-950/50 px-1.5 sm:px-2.5 py-0.5 rounded-full border border-emerald-500/30 text-[10px] sm:text-[11px] transition-all'
+                        : 'inline-flex items-center text-rose-400 bg-rose-950/50 px-1.5 sm:px-2.5 py-0.5 rounded-full border border-rose-500/30 text-[10px] sm:text-[11px] transition-all';
                 }
             });
 
             if (isChecked) {
                 startBtn.disabled = false;
-                startBtn.className = 'w-full py-3.5 bg-gradient-to-r from-blue-600 to-cyan-500 hover:opacity-90 text-white font-bold rounded-xl shadow-lg glow-cyan transition-all cursor-pointer flex items-center justify-center space-x-2 text-sm';
+                startBtn.className = 'w-full py-3.5 bg-gradient-to-r from-blue-600 to-cyan-500 hover:opacity-90 text-white font-bold rounded-xl shadow-lg glow-cyan transition-all cursor-pointer flex items-center justify-center space-x-2 text-xs sm:text-sm';
                 startBtn.innerHTML = '<i class="fa-solid fa-play"></i><span>LANCER LA FABRICATION</span>';
             } else {
                 startBtn.disabled = true;
-                startBtn.className = 'w-full py-3.5 bg-slate-800 text-slate-500 font-bold rounded-xl shadow-lg transition-all flex items-center justify-center space-x-2 text-sm cursor-not-allowed';
+                startBtn.className = 'w-full py-3.5 bg-slate-800 text-slate-500 font-bold rounded-xl shadow-lg transition-all flex items-center justify-center space-x-2 text-xs sm:text-sm cursor-not-allowed';
                 startBtn.innerHTML = '<i class="fa-solid fa-lock"></i><span>VALIDER LA CHECK-LIST POUR LANCER</span>';
             }
         }
@@ -508,6 +512,7 @@
             document.getElementById('endScreen').classList.remove('hidden');
         }
 
+        // --- KEYBOARD CONTROLS ---
         window.addEventListener('keydown', (e) => {
             if (gameState !== 'PLAYING') return;
             const laneIdx = laneKeys.indexOf(e.code);
@@ -520,6 +525,29 @@
         window.addEventListener('keyup', (e) => {
             const laneIdx = laneKeys.indexOf(e.code);
             if (laneIdx !== -1) activeKeys[laneIdx] = false;
+        });
+
+        // --- TOUCH & MOUSE CONTROLS ---
+        document.querySelectorAll('.touch-lane').forEach(laneEl => {
+            const laneIdx = parseInt(laneEl.getAttribute('data-lane'));
+
+            const activateLane = (e) => {
+                e.preventDefault();
+                if (gameState !== 'PLAYING') return;
+                activeKeys[laneIdx] = true;
+                checkHit(laneIdx);
+            };
+
+            const deactivateLane = (e) => {
+                e.preventDefault();
+                activeKeys[laneIdx] = false;
+            };
+
+            laneEl.addEventListener('touchstart', activateLane, { passive: false });
+            laneEl.addEventListener('touchend', deactivateLane, { passive: false });
+            laneEl.addEventListener('mousedown', activateLane);
+            laneEl.addEventListener('mouseup', deactivateLane);
+            laneEl.addEventListener('mouseleave', deactivateLane);
         });
 
         function checkHit(lane) {
@@ -646,7 +674,7 @@
             ctx.fillRect(ingotX + 20, ingotY + 14, ingotWidth - 40, ingotHeight - 28);
 
             // 4. Hydraulic Press
-            const pressWidth = 360;
+            const pressWidth = Math.min(360, w - 40);
             const pressX = w / 2 - pressWidth / 2;
 
             ctx.fillStyle = '#1e293b';
