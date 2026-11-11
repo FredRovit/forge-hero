@@ -42,47 +42,25 @@
 <body class="bg-slate-950 text-slate-100 h-full flex flex-col overflow-hidden select-none">
 
     <!-- Top Header -->
-    <header class="bg-slate-900 border-b border-slate-800 px-3 py-2 flex items-center justify-between shrink-0 z-20 shadow-lg">
+    <header class="bg-slate-900 border-b border-slate-800 px-3 py-1.5 flex items-center justify-between shrink-0 z-20 shadow-lg">
         <div class="flex items-center space-x-2">
-            <div class="bg-blue-600 text-white px-2.5 py-1 rounded font-black tracking-wider text-xs sm:text-sm flex items-center space-x-1.5 shadow">
+            <div class="bg-blue-600 text-white px-2 py-0.5 rounded font-black tracking-wider text-xs flex items-center space-x-1 shadow">
                 <i class="fa-solid fa-industry text-cyan-400"></i>
                 <span>FORGE HERO</span>
             </div>
-            <span class="text-[11px] text-slate-400 font-medium hidden md:inline">Atelier de Forge & Industrie 4.0</span>
         </div>
 
         <!-- EPI / Safety Check Indicator Badges -->
-        <div class="flex items-center space-x-1.5 bg-slate-800/80 px-2.5 py-1 rounded-full border border-slate-700 text-[10px] sm:text-xs">
-            <button id="musicToggleBtn" class="flex items-center space-x-1 bg-slate-900 hover:bg-slate-700 text-cyan-400 px-2 py-1 rounded-full border border-cyan-500/40 text-[10px] font-mono transition mr-1">
+        <div class="flex items-center space-x-1.5 bg-slate-800/80 px-2 py-1 rounded-full border border-slate-700 text-[10px]">
+            <button id="musicToggleBtn" class="flex items-center space-x-1 bg-slate-900 hover:bg-slate-700 text-cyan-400 px-2 py-0.5 rounded-full border border-cyan-500/40 text-[10px] font-mono transition mr-1">
                 <i id="musicIcon" class="fa-solid fa-volume-high"></i>
                 <span id="musicStatus" class="hidden sm:inline">SON : ON</span>
             </button>
             
-            <span class="text-slate-400 text-[10px] font-semibold uppercase hidden lg:inline mr-1">EPI :</span>
-            
-            <div class="relative group cursor-pointer">
-                <span id="badgeCasque" class="inline-flex items-center text-rose-400 bg-rose-950/50 px-1.5 py-0.5 rounded-full border border-rose-500/30 text-[10px]">
-                    <i class="fa-solid fa-hard-hat sm:mr-1"></i><span class="hidden sm:inline">Casque</span>
-                </span>
-            </div>
-
-            <div class="relative group cursor-pointer">
-                <span id="badgeLunettes" class="inline-flex items-center text-rose-400 bg-rose-950/50 px-1.5 py-0.5 rounded-full border border-rose-500/30 text-[10px]">
-                    <i class="fa-solid fa-glasses sm:mr-1"></i><span class="hidden sm:inline">Lunettes</span>
-                </span>
-            </div>
-
-            <div class="relative group cursor-pointer">
-                <span id="badgeBouchon" class="inline-flex items-center text-rose-400 bg-rose-950/50 px-1.5 py-0.5 rounded-full border border-rose-500/30 text-[10px]">
-                    <i class="fa-solid fa-ear-deaf sm:mr-1"></i><span class="hidden sm:inline">Bouchon</span>
-                </span>
-            </div>
-
-            <div class="relative group cursor-pointer">
-                <span id="badgeChaussure" class="inline-flex items-center text-rose-400 bg-rose-950/50 px-1.5 py-0.5 rounded-full border border-rose-500/30 text-[10px]">
-                    <i class="fa-solid fa-shoe-prints sm:mr-1"></i><span class="hidden sm:inline">Chaussure</span>
-                </span>
-            </div>
+            <div class="relative group cursor-pointer"><span id="badgeCasque" class="inline-flex items-center text-rose-400 bg-rose-950/50 px-1.5 py-0.5 rounded-full border border-rose-500/30 text-[9px]"><i class="fa-solid fa-hard-hat sm:mr-1"></i><span class="hidden sm:inline">Casque</span></span></div>
+            <div class="relative group cursor-pointer"><span id="badgeLunettes" class="inline-flex items-center text-rose-400 bg-rose-950/50 px-1.5 py-0.5 rounded-full border border-rose-500/30 text-[9px]"><i class="fa-solid fa-glasses sm:mr-1"></i><span class="hidden sm:inline">Lunettes</span></span></div>
+            <div class="relative group cursor-pointer"><span id="badgeBouchon" class="inline-flex items-center text-rose-400 bg-rose-950/50 px-1.5 py-0.5 rounded-full border border-rose-500/30 text-[9px]"><i class="fa-solid fa-ear-deaf sm:mr-1"></i><span class="hidden sm:inline">Bouchon</span></span></div>
+            <div class="relative group cursor-pointer"><span id="badgeChaussure" class="inline-flex items-center text-rose-400 bg-rose-950/50 px-1.5 py-0.5 rounded-full border border-rose-500/30 text-[9px]"><i class="fa-solid fa-shoe-prints sm:mr-1"></i><span class="hidden sm:inline">Chaussure</span></span></div>
         </div>
     </header>
 
@@ -90,51 +68,51 @@
     <div class="flex-1 flex flex-col lg:flex-row relative overflow-hidden">
 
         <!-- START SCREEN OVERLAY WITH MANDATORY SAFETY CHECKLIST -->
-        <div id="startScreen" class="absolute inset-0 bg-slate-950/90 backdrop-blur-md z-30 flex items-center justify-center p-3 overflow-y-auto">
-            <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-xl w-full p-5 sm:p-6 shadow-2xl text-center my-auto">
-                <div class="inline-flex p-3 bg-blue-600/20 text-cyan-400 rounded-2xl mb-3 border border-blue-500/30 glow-cyan">
-                    <i class="fa-solid fa-hammer text-2xl sm:text-3xl"></i>
+        <div id="startScreen" class="absolute inset-0 bg-slate-950/95 backdrop-blur-md z-50 flex items-center justify-center p-3 overflow-y-auto">
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-xl w-full p-4 shadow-2xl text-center my-auto">
+                <div class="inline-flex p-2.5 bg-blue-600/20 text-cyan-400 rounded-xl mb-2 border border-blue-500/30 glow-cyan">
+                    <i class="fa-solid fa-hammer text-2xl"></i>
                 </div>
-                <h1 class="text-xl sm:text-2xl font-black tracking-wide text-white mb-1">FORGE HERO</h1>
-                <p class="text-slate-400 text-xs mb-4">Jeu de rythme & simulation industrielle (Tactile & Clavier)</p>
+                <h1 class="text-xl font-black tracking-wide text-white mb-1">FORGE HERO</h1>
+                <p class="text-slate-400 text-[11px] mb-3">Jeu de rythme & simulation industrielle (Tactile & Clavier)</p>
 
                 <!-- Difficulty Selection -->
-                <div class="grid grid-cols-3 gap-2 mb-4">
-                    <button class="diff-btn border border-cyan-400 bg-slate-800 rounded-xl p-2.5 text-left transition hover:border-cyan-400 cursor-pointer" data-diff="beginner">
-                        <div class="text-[11px] sm:text-xs font-bold text-cyan-400 font-mono">DÉBUTANT</div>
-                        <div class="text-[9px] sm:text-[10px] text-slate-400">90 BPM</div>
+                <div class="grid grid-cols-3 gap-2 mb-3">
+                    <button class="diff-btn border border-cyan-400 bg-slate-800 rounded-xl p-2 text-left transition cursor-pointer" data-diff="beginner">
+                        <div class="text-[11px] font-bold text-cyan-400 font-mono diff-title">DÉBUTANT</div>
+                        <div class="text-[9px] text-slate-400">90 BPM</div>
                     </button>
-                    <button class="diff-btn border border-slate-700 bg-slate-950 rounded-xl p-2.5 text-left transition hover:border-cyan-400 cursor-pointer" data-diff="normal">
-                        <div class="text-[11px] sm:text-xs font-bold text-slate-200 font-mono">CONFIRMÉ</div>
-                        <div class="text-[9px] sm:text-[10px] text-slate-400">130 BPM</div>
+                    <button class="diff-btn border border-slate-700 bg-slate-950 rounded-xl p-2 text-left transition cursor-pointer" data-diff="normal">
+                        <div class="text-[11px] font-bold text-slate-200 font-mono diff-title">CONFIRMÉ</div>
+                        <div class="text-[9px] text-slate-400">130 BPM</div>
                     </button>
-                    <button class="diff-btn border border-slate-700 bg-slate-950 rounded-xl p-2.5 text-left transition hover:border-cyan-400 cursor-pointer" data-diff="expert">
-                        <div class="text-[11px] sm:text-xs font-bold text-slate-200 font-mono">EXPERT</div>
-                        <div class="text-[9px] sm:text-[10px] text-slate-400">175 BPM</div>
+                    <button class="diff-btn border border-slate-700 bg-slate-950 rounded-xl p-2 text-left transition cursor-pointer" data-diff="expert">
+                        <div class="text-[11px] font-bold text-slate-200 font-mono diff-title">EXPERT</div>
+                        <div class="text-[9px] text-slate-400">175 BPM</div>
                     </button>
                 </div>
 
                 <!-- PRE-JOB BRIEFING & SAFETY CHECK-LIST -->
-                <div class="mb-4 bg-slate-950/80 border border-slate-800 rounded-xl p-3 text-left space-y-2">
-                    <div class="flex items-center justify-between text-[11px] sm:text-xs font-mono text-cyan-400 border-b border-slate-800 pb-1.5">
-                        <span class="font-bold flex items-center"><i class="fa-solid fa-clipboard-check mr-1.5 text-orange-400"></i> PRÉ-JOB BRIEFING (SÉCURITÉ)</span>
+                <div class="mb-3 bg-slate-950/80 border border-slate-800 rounded-xl p-2.5 text-left space-y-1.5">
+                    <div class="flex items-center justify-between text-[11px] font-mono text-cyan-400 border-b border-slate-800 pb-1">
+                        <span class="font-bold flex items-center"><i class="fa-solid fa-clipboard-check mr-1 text-orange-400"></i> PRÉ-JOB BRIEFING (SÉCURITÉ)</span>
                         <span class="text-[9px] text-orange-400">OBLIGATOIRE</span>
                     </div>
-                    <p class="text-[10px] sm:text-[11px] text-slate-400">Cochez les points de contrôle réglementaires pour valider votre mise en conformité :</p>
+                    <p class="text-[10px] text-slate-400">Cochez les points de contrôle réglementaires :</p>
                     
-                    <div class="space-y-1.5 pt-0.5">
-                        <label class="flex items-start space-x-2 cursor-pointer text-[11px] sm:text-xs text-slate-300 hover:text-white">
-                            <input type="checkbox" id="checkEpiAll" class="mt-0.5 accent-blue-600 w-4 h-4 rounded cursor-pointer shrink-0">
+                    <div class="space-y-1 pt-0.5">
+                        <label class="flex items-start space-x-2 cursor-pointer text-[10px] text-slate-300 hover:text-white">
+                            <input type="checkbox" id="checkEpiAll" class="mt-0.5 accent-blue-600 w-3.5 h-3.5 rounded cursor-pointer shrink-0">
                             <span>Vérification complète des EPI (Casque, Lunettes, Bouchons, Chaussures).</span>
                         </label>
-                        <label class="flex items-start space-x-2 cursor-pointer text-[11px] sm:text-xs text-slate-300 hover:text-white">
-                            <input type="checkbox" id="checkPJB" class="mt-0.5 accent-blue-600 w-4 h-4 rounded cursor-pointer shrink-0">
+                        <label class="flex items-start space-x-2 cursor-pointer text-[10px] text-slate-300 hover:text-white">
+                            <input type="checkbox" id="checkPJB" class="mt-0.5 accent-blue-600 w-3.5 h-3.5 rounded cursor-pointer shrink-0">
                             <span>Réalisation du Pré-Job Briefing (PJB) et analyse des risques.</span>
                         </label>
                     </div>
                 </div>
 
-                <button id="startBtn" disabled class="w-full py-3 bg-slate-800 text-slate-500 font-bold rounded-xl shadow-lg transition-all flex items-center justify-center space-x-2 text-xs sm:text-sm cursor-not-allowed">
+                <button id="startBtn" disabled class="w-full py-2.5 bg-slate-800 text-slate-500 font-bold rounded-xl shadow-lg transition-all flex items-center justify-center space-x-2 text-xs cursor-not-allowed">
                     <i class="fa-solid fa-lock"></i>
                     <span>VALIDER LA CHECK-LIST POUR LANCER</span>
                 </button>
@@ -142,38 +120,38 @@
         </div>
 
         <!-- END GAME SUMMARY OVERLAY -->
-        <div id="endScreen" class="absolute inset-0 bg-slate-950/90 backdrop-blur-md z-30 hidden flex items-center justify-center p-3">
-            <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-lg w-full p-5 sm:p-6 shadow-2xl text-center my-auto">
-                <div class="inline-flex p-3 bg-emerald-500/20 text-emerald-400 rounded-2xl mb-3 border border-emerald-500/30">
-                    <i class="fa-solid fa-award text-2xl sm:text-3xl"></i>
+        <div id="endScreen" class="absolute inset-0 bg-slate-950/95 backdrop-blur-md z-50 hidden flex items-center justify-center p-3">
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-lg w-full p-4 shadow-2xl text-center my-auto">
+                <div class="inline-flex p-2.5 bg-emerald-500/20 text-emerald-400 rounded-xl mb-2 border border-emerald-500/30">
+                    <i class="fa-solid fa-award text-2xl"></i>
                 </div>
-                <h2 class="text-lg sm:text-xl font-black text-white mb-1">PIÈCE FORGÉE AVEC SUCCÈS !</h2>
-                <p class="text-slate-400 text-xs mb-4">Rotor industriel de haute précision - Contrôle qualité validé</p>
+                <h2 class="text-base font-black text-white mb-1">PIÈCE FORGÉE AVEC SUCCÈS !</h2>
+                <p class="text-slate-400 text-[11px] mb-3">Rotor industriel de haute précision - Contrôle qualité validé</p>
 
-                <div class="grid grid-cols-2 gap-2.5 mb-4 text-left">
-                    <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800">
-                        <div class="text-[9px] sm:text-[10px] text-slate-400 font-mono">SCORE FINAL</div>
-                        <div id="finalScore" class="text-base sm:text-lg font-black font-mono text-cyan-400">0 pts</div>
+                <div class="grid grid-cols-2 gap-2 mb-3 text-left">
+                    <div class="bg-slate-950 p-2 rounded-xl border border-slate-800">
+                        <div class="text-[9px] text-slate-400 font-mono">SCORE FINAL</div>
+                        <div id="finalScore" class="text-sm font-black font-mono text-cyan-400">0 pts</div>
                     </div>
-                    <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800">
-                        <div class="text-[9px] sm:text-[10px] text-slate-400 font-mono">PRÉCISION</div>
-                        <div id="finalAccuracy" class="text-base sm:text-lg font-black font-mono text-emerald-400">0%</div>
+                    <div class="bg-slate-950 p-2 rounded-xl border border-slate-800">
+                        <div class="text-[9px] text-slate-400 font-mono">PRÉCISION</div>
+                        <div id="finalAccuracy" class="text-sm font-black font-mono text-emerald-400">0%</div>
                     </div>
-                    <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800">
-                        <div class="text-[9px] sm:text-[10px] text-slate-400 font-mono">COMBO MAX</div>
-                        <div id="finalCombo" class="text-base sm:text-lg font-black font-mono text-orange-400">0x</div>
+                    <div class="bg-slate-950 p-2 rounded-xl border border-slate-800">
+                        <div class="text-[9px] text-slate-400 font-mono">COMBO MAX</div>
+                        <div id="finalCombo" class="text-sm font-black font-mono text-orange-400">0x</div>
                     </div>
-                    <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800">
-                        <div class="text-[9px] sm:text-[10px] text-slate-400 font-mono">NOTE QUALITÉ</div>
-                        <div id="finalGrade" class="text-base sm:text-lg font-black font-mono text-amber-400">A+</div>
+                    <div class="bg-slate-950 p-2 rounded-xl border border-slate-800">
+                        <div class="text-[9px] text-slate-400 font-mono">NOTE QUALITÉ</div>
+                        <div id="finalGrade" class="text-sm font-black font-mono text-amber-400">A+</div>
                     </div>
                 </div>
 
-                <div class="flex space-x-2.5">
-                    <button id="restartBtn" class="flex-1 py-3 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-bold text-xs sm:text-sm rounded-xl shadow-lg hover:opacity-90 transition cursor-pointer">
-                        <i class="fa-solid fa-rotate-right mr-1.5"></i> RECOMMENCER
+                <div class="flex space-x-2">
+                    <button id="restartBtn" class="flex-1 py-2.5 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-bold text-xs rounded-xl shadow-lg hover:opacity-90 transition cursor-pointer">
+                        <i class="fa-solid fa-rotate-right mr-1"></i> RECOMMENCER
                     </button>
-                    <button id="changeDiffBtn" class="px-4 py-3 bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold rounded-xl transition text-xs cursor-pointer">
+                    <button id="changeDiffBtn" class="px-3 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold rounded-xl transition text-[11px] cursor-pointer">
                         Difficulté
                     </button>
                 </div>
@@ -181,84 +159,77 @@
         </div>
 
         <!-- LEFT SIDE: Canvas Area -->
-        <div class="flex-1 relative flex flex-col items-center justify-center bg-slate-950 overflow-hidden border-r border-slate-800">
+        <div class="flex-1 relative flex flex-col items-center justify-center bg-slate-950 overflow-hidden">
             <canvas id="gameCanvas" class="absolute inset-0 w-full h-full block pixel-art"></canvas>
 
             <!-- Floating Judgment Popup Container -->
-            <div id="judgmentPopup" class="absolute top-1/3 text-xl sm:text-3xl font-black tracking-widest font-mono transition-all duration-150 opacity-0 pointer-events-none z-10 scale-90">
+            <div id="judgmentPopup" class="absolute top-1/4 text-lg font-black tracking-widest font-mono transition-all duration-150 opacity-0 pointer-events-none z-10 scale-90">
                 PARFAIT
             </div>
 
-            <!-- Lane Control Hints & Touch Buttons Overlay -->
-            <div id="touchControls" class="absolute bottom-2 left-0 right-0 flex justify-center space-x-2 px-3 z-10">
-                <!-- Lane 1 (D) -->
-                <div class="touch-lane flex-1 max-w-[80px] h-14 sm:h-16 rounded-xl bg-slate-900/85 border-2 border-slate-700 active:border-cyan-400 active:bg-cyan-950/40 flex flex-col items-center justify-center text-slate-300 font-mono shadow-lg cursor-pointer select-none" data-lane="0">
-                    <span class="text-sm sm:text-base font-bold pointer-events-none">D</span>
-                    <span class="text-[8px] sm:text-[9px] text-cyan-400 pointer-events-none">VOIE 1</span>
+            <!-- Lane Control Hints & Touch Buttons Overlay (Compact) -->
+            <div id="touchControls" class="absolute bottom-2 left-0 right-0 flex justify-center space-x-1.5 px-2 z-10">
+                <div class="touch-lane flex-1 max-w-[80px] h-12 rounded-lg bg-slate-900/90 border border-slate-700 active:border-cyan-400 active:bg-cyan-950/40 flex flex-col items-center justify-center text-slate-300 font-mono shadow cursor-pointer select-none" data-lane="0">
+                    <span class="text-xs font-bold pointer-events-none">D</span>
+                    <span class="text-[7px] text-cyan-400 pointer-events-none">VOIE 1</span>
                 </div>
-                <!-- Lane 2 (F) -->
-                <div class="touch-lane flex-1 max-w-[80px] h-14 sm:h-16 rounded-xl bg-slate-900/85 border-2 border-slate-700 active:border-cyan-400 active:bg-cyan-950/40 flex flex-col items-center justify-center text-slate-300 font-mono shadow-lg cursor-pointer select-none" data-lane="1">
-                    <span class="text-sm sm:text-base font-bold pointer-events-none">F</span>
-                    <span class="text-[8px] sm:text-[9px] text-cyan-400 pointer-events-none">VOIE 2</span>
+                <div class="touch-lane flex-1 max-w-[80px] h-12 rounded-lg bg-slate-900/90 border border-slate-700 active:border-cyan-400 active:bg-cyan-950/40 flex flex-col items-center justify-center text-slate-300 font-mono shadow cursor-pointer select-none" data-lane="1">
+                    <span class="text-xs font-bold pointer-events-none">F</span>
+                    <span class="text-[7px] text-cyan-400 pointer-events-none">VOIE 2</span>
                 </div>
-                <!-- Lane 3 (J) -->
-                <div class="touch-lane flex-1 max-w-[80px] h-14 sm:h-16 rounded-xl bg-slate-900/85 border-2 border-slate-700 active:border-cyan-400 active:bg-cyan-950/40 flex flex-col items-center justify-center text-slate-300 font-mono shadow-lg cursor-pointer select-none" data-lane="2">
-                    <span class="text-sm sm:text-base font-bold pointer-events-none">J</span>
-                    <span class="text-[8px] sm:text-[9px] text-cyan-400 pointer-events-none">VOIE 3</span>
+                <div class="touch-lane flex-1 max-w-[80px] h-12 rounded-lg bg-slate-900/90 border border-slate-700 active:border-cyan-400 active:bg-cyan-950/40 flex flex-col items-center justify-center text-slate-300 font-mono shadow cursor-pointer select-none" data-lane="2">
+                    <span class="text-xs font-bold pointer-events-none">J</span>
+                    <span class="text-[7px] text-cyan-400 pointer-events-none">VOIE 3</span>
                 </div>
-                <!-- Lane 4 (K) -->
-                <div class="touch-lane flex-1 max-w-[80px] h-14 sm:h-16 rounded-xl bg-slate-900/85 border-2 border-slate-700 active:border-cyan-400 active:bg-cyan-950/40 flex flex-col items-center justify-center text-slate-300 font-mono shadow-lg cursor-pointer select-none" data-lane="3">
-                    <span class="text-sm sm:text-base font-bold pointer-events-none">K</span>
-                    <span class="text-[8px] sm:text-[9px] text-cyan-400 pointer-events-none">VOIE 4</span>
+                <div class="touch-lane flex-1 max-w-[80px] h-12 rounded-lg bg-slate-900/90 border border-slate-700 active:border-cyan-400 active:bg-cyan-950/40 flex flex-col items-center justify-center text-slate-300 font-mono shadow cursor-pointer select-none" data-lane="3">
+                    <span class="text-xs font-bold pointer-events-none">K</span>
+                    <span class="text-[7px] text-cyan-400 pointer-events-none">VOIE 4</span>
                 </div>
             </div>
         </div>
 
-        <!-- RIGHT SIDE: Industrial HUD & AI Assistant Panel -->
-        <div class="w-full lg:w-80 bg-slate-900/95 p-3 sm:p-4 flex flex-col justify-between shrink-0 border-t lg:border-t-0 lg:border-l border-slate-800 z-20">
-            <div class="grid grid-cols-2 lg:grid-cols-1 gap-2.5 mb-3 lg:mb-0 lg:space-y-3">
-                <div class="flex items-center justify-between border-b border-slate-800 pb-2">
-                    <span class="text-[11px] sm:text-xs font-mono text-slate-400">SCORE</span>
-                    <span id="hudScore" class="text-base sm:text-lg font-black font-mono text-cyan-400">000000</span>
+        <!-- RIGHT SIDE: Industrial HUD & AI Assistant Panel (Ultra-Compact for Mobile) -->
+        <div class="w-full lg:w-72 bg-slate-900/95 p-2.5 flex flex-col justify-between shrink-0 border-t lg:border-t-0 lg:border-l border-slate-800 z-20 text-xs">
+            <div class="grid grid-cols-4 lg:grid-cols-1 gap-1.5 mb-1.5 lg:mb-0 lg:space-y-1.5">
+                <div class="bg-slate-950/80 px-2 py-1 rounded border border-slate-800 flex lg:justify-between items-center">
+                    <span class="text-[9px] font-mono text-slate-400">SCORE</span>
+                    <span id="hudScore" class="text-xs font-black font-mono text-cyan-400 ml-1 lg:ml-0">000000</span>
                 </div>
-
-                <div class="flex items-center justify-between border-b border-slate-800 pb-2">
-                    <span class="text-[11px] sm:text-xs font-mono text-slate-400">COMBO</span>
-                    <span id="hudCombo" class="text-base sm:text-lg font-black font-mono text-orange-400">0x</span>
+                <div class="bg-slate-950/80 px-2 py-1 rounded border border-slate-800 flex lg:justify-between items-center">
+                    <span class="text-[9px] font-mono text-slate-400">COMBO</span>
+                    <span id="hudCombo" class="text-xs font-black font-mono text-orange-400 ml-1 lg:ml-0">0x</span>
                 </div>
-
-                <div class="flex items-center justify-between border-b border-slate-800 pb-2">
-                    <span class="text-[11px] sm:text-xs font-mono text-slate-400">TEMPÉRATURE LINGOT</span>
-                    <span id="hudTemp" class="text-xs sm:text-sm font-black font-mono text-amber-500">1250°C</span>
+                <div class="bg-slate-950/80 px-2 py-1 rounded border border-slate-800 flex lg:justify-between items-center">
+                    <span class="text-[9px] font-mono text-slate-400">TEMP.</span>
+                    <span id="hudTemp" class="text-[11px] font-black font-mono text-amber-500 ml-1 lg:ml-0">1250°C</span>
                 </div>
-
-                <div class="flex items-center justify-between border-b border-slate-800 pb-2">
-                    <span class="text-[11px] sm:text-xs font-mono text-slate-400">DIFFICULTÉ</span>
-                    <span id="hudDiff" class="text-[11px] sm:text-xs font-bold font-mono text-emerald-400">DÉBUTANT</span>
+                <div class="bg-slate-950/80 px-2 py-1 rounded border border-slate-800 flex lg:justify-between items-center">
+                    <span class="text-[9px] font-mono text-slate-400">NIVEAU</span>
+                    <span id="hudDiff" class="text-[10px] font-bold font-mono text-emerald-400 ml-1 lg:ml-0">DÉBUTANT</span>
                 </div>
             </div>
 
-            <!-- AI Process Assistant Panel -->
-            <div class="my-2.5 lg:my-4 bg-slate-950 border border-slate-800 rounded-xl p-3">
-                <div class="flex items-center justify-between mb-1.5">
-                    <span class="text-[10px] sm:text-[11px] font-mono font-bold text-cyan-400 flex items-center">
-                        <i class="fa-solid fa-microchip mr-1.5 text-cyan-400"></i> ASSISTANT IA FORGE
+            <!-- AI Process Assistant Panel (Mini) -->
+            <div class="my-1 bg-slate-950 border border-slate-800 rounded-lg p-2">
+                <div class="flex items-center justify-between mb-0.5">
+                    <span class="text-[9px] font-mono font-bold text-cyan-400 flex items-center">
+                        <i class="fa-solid fa-microchip mr-1 text-cyan-400"></i> ASSISTANT IA
                     </span>
-                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
                 </div>
-                <p id="aiMessage" class="text-[10px] sm:text-[11px] text-slate-300 font-sans leading-relaxed">
-                    Presse prête. Attente du top départ. Respectez les cadences de frappe pour garantir l'homogénéité du métal.
+                <p id="aiMessage" class="text-[9px] text-slate-300 font-sans leading-tight line-clamp-2">
+                    Presse prête. Respectez les cadences de frappe.
                 </p>
-                <div class="mt-2 pt-2 border-t border-slate-800/80 flex justify-between text-[10px] font-mono text-slate-400">
+                <div class="mt-1 pt-1 border-t border-slate-800/80 flex justify-between text-[9px] font-mono text-slate-400">
                     <span>Pressage: <strong id="aiProgress" class="text-cyan-400">0%</strong></span>
-                    <span>Optimisation: <strong class="text-emerald-400">99.2%</strong></span>
+                    <span>Opti: <strong class="text-emerald-400">99.2%</strong></span>
                 </div>
             </div>
 
             <!-- In-game Restart Button -->
-            <button id="inGameRestartBtn" class="w-full py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold rounded-xl border border-slate-700 transition flex items-center justify-center space-x-2 text-xs cursor-pointer">
-                <i class="fa-solid fa-rotate-right"></i>
-                <span>RECOMMENCER LA PARTIE</span>
+            <button id="inGameRestartBtn" class="w-full py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold rounded-lg border border-slate-700 transition flex items-center justify-center space-x-1.5 text-[11px] cursor-pointer">
+                <i class="fa-solid fa-rotate-right text-[10px]"></i>
+                <span>RECOMMENCER</span>
             </button>
         </div>
     </div>
@@ -405,18 +376,18 @@
                 const el = document.getElementById(bId);
                 if (el) {
                     el.className = isChecked 
-                        ? 'inline-flex items-center text-emerald-400 bg-emerald-950/50 px-1.5 sm:px-2.5 py-0.5 rounded-full border border-emerald-500/30 text-[10px] sm:text-[11px] transition-all'
-                        : 'inline-flex items-center text-rose-400 bg-rose-950/50 px-1.5 sm:px-2.5 py-0.5 rounded-full border border-rose-500/30 text-[10px] sm:text-[11px] transition-all';
+                        ? 'inline-flex items-center text-emerald-400 bg-emerald-950/50 px-1.5 py-0.5 rounded-full border border-emerald-500/30 text-[9px] transition-all'
+                        : 'inline-flex items-center text-rose-400 bg-rose-950/50 px-1.5 py-0.5 rounded-full border border-rose-500/30 text-[9px] transition-all';
                 }
             });
 
             if (isChecked) {
                 startBtn.disabled = false;
-                startBtn.className = 'w-full py-3.5 bg-gradient-to-r from-blue-600 to-cyan-500 hover:opacity-90 text-white font-bold rounded-xl shadow-lg glow-cyan transition-all cursor-pointer flex items-center justify-center space-x-2 text-xs sm:text-sm';
+                startBtn.className = 'w-full py-3 bg-gradient-to-r from-blue-600 to-cyan-500 hover:opacity-90 text-white font-bold rounded-xl shadow-lg glow-cyan transition-all cursor-pointer flex items-center justify-center space-x-2 text-xs sm:text-sm';
                 startBtn.innerHTML = '<i class="fa-solid fa-play"></i><span>LANCER LA FABRICATION</span>';
             } else {
                 startBtn.disabled = true;
-                startBtn.className = 'w-full py-3.5 bg-slate-800 text-slate-500 font-bold rounded-xl shadow-lg transition-all flex items-center justify-center space-x-2 text-xs sm:text-sm cursor-not-allowed';
+                startBtn.className = 'w-full py-2.5 bg-slate-800 text-slate-500 font-bold rounded-xl shadow-lg transition-all flex items-center justify-center space-x-2 text-xs cursor-not-allowed';
                 startBtn.innerHTML = '<i class="fa-solid fa-lock"></i><span>VALIDER LA CHECK-LIST POUR LANCER</span>';
             }
         }
@@ -424,10 +395,25 @@
         checkEpiAll.addEventListener('change', updateChecklistState);
         checkPJB.addEventListener('change', updateChecklistState);
 
+        // Correction de la gestion visuelle du clic sur les boutons de difficulté
         document.querySelectorAll('.diff-btn').forEach(btn => {
             btn.addEventListener('click', () => {
-                document.querySelectorAll('.diff-btn').forEach(b => b.classList.remove('border-cyan-400', 'bg-slate-800'));
+                document.querySelectorAll('.diff-btn').forEach(b => {
+                    b.classList.remove('border-cyan-400', 'bg-slate-800');
+                    b.classList.add('border-slate-700', 'bg-slate-950');
+                    const title = b.querySelector('.diff-title');
+                    if(title) {
+                        title.classList.remove('text-cyan-400');
+                        title.classList.add('text-slate-200');
+                    }
+                });
+                btn.classList.remove('border-slate-700', 'bg-slate-950');
                 btn.classList.add('border-cyan-400', 'bg-slate-800');
+                const activeTitle = btn.querySelector('.diff-title');
+                if(activeTitle) {
+                    activeTitle.classList.remove('text-slate-200');
+                    activeTitle.classList.add('text-cyan-400');
+                }
                 currentDifficulty = btn.getAttribute('data-diff');
             });
         });
@@ -551,7 +537,7 @@
         });
 
         function checkHit(lane) {
-            const targetY = canvas.height - 95;
+            const targetY = canvas.height - 75;
             const hitWindow = 55;
             let closestIdx = -1;
             let minDst = 9999;
@@ -584,7 +570,7 @@
                     soundEngine.playHitSound('good');
                 }
 
-                pressAnimTimer = 12;
+                pressAnimTimer = 14;
                 spawnSparks(lane, targetY);
                 if (combo > maxCombo) maxCombo = combo;
                 updateHUD();
@@ -646,67 +632,63 @@
                 ctx.stroke();
             }
 
-            // 2. Anvil & Thick Ingot (Enclume et Lingot incandescent remontés)
-            const anvilWidth = Math.min(300, w - 20);
-            const anvilY = h - 110;
+            // 2. Anvil & Thick Ingot
+            const anvilWidth = Math.min(280, w - 20);
+            const anvilY = h - 130;
             ctx.fillStyle = '#1e293b';
-            ctx.fillRect(w / 2 - anvilWidth / 2, anvilY, anvilWidth, 28);
+            ctx.fillRect(w / 2 - anvilWidth / 2, anvilY, anvilWidth, 24);
 
             const progressRatio = gameState === 'PLAYING' ? Math.min(1, (songTimer / songDuration)) : 0;
-            const maxIngotW = Math.min(190, anvilWidth - 70);
-            const ingotWidth = maxIngotW - (progressRatio * 25);
-            const ingotHeight = 38 + (progressRatio * 12);
+            const maxIngotW = Math.min(170, anvilWidth - 60);
+            const ingotWidth = maxIngotW - (progressRatio * 20);
+            const ingotHeight = 32 + (progressRatio * 10);
             const ingotX = w / 2 - ingotWidth / 2;
             const ingotY = anvilY - ingotHeight;
 
             ctx.fillStyle = '#ff3300';
             ctx.fillRect(ingotX, ingotY, ingotWidth, ingotHeight);
             ctx.fillStyle = '#ffaa00';
-            ctx.fillRect(ingotX + 5, ingotY + 4, ingotWidth - 10, ingotHeight - 8);
+            ctx.fillRect(ingotX + 4, ingotY + 3, ingotWidth - 8, ingotHeight - 6);
             ctx.fillStyle = '#ffff00';
-            ctx.fillRect(ingotX + 12, ingotY + 8, ingotWidth - 24, ingotHeight - 16);
+            ctx.fillRect(ingotX + 10, ingotY + 6, ingotWidth - 20, ingotHeight - 12);
 
-            // 3. Compact Hydraulic Press (Gris Acier)
-            const pressWidth = Math.min(320, w - 20);
+            // 3. Hydraulic Press
+            const pressWidth = Math.min(300, w - 20);
             const pressX = w / 2 - pressWidth / 2;
 
-            // Chapeau supérieur compact
             ctx.fillStyle = '#1e293b';
-            ctx.fillRect(pressX - 4, 2, pressWidth + 8, 18);
+            ctx.fillRect(pressX - 4, 10, pressWidth + 8, 15);
             ctx.fillStyle = '#334155';
-            ctx.fillRect(pressX, 4, pressWidth, 12);
+            ctx.fillRect(pressX, 11, pressWidth, 10);
 
-            // Montants verticaux raccourcis
             ctx.fillStyle = '#475569';
-            ctx.fillRect(pressX + 6, 16, 24, h - 135);
-            ctx.fillRect(pressX + pressWidth - 30, 16, 24, h - 135);
+            ctx.fillRect(pressX + 6, 21, 22, h - 150);
+            ctx.fillRect(pressX + pressWidth - 28, 21, 22, h - 150);
 
             let pressOffsetY = 0;
-            const defaultRamY = anvilY - 115;
-            const strikeTargetY = ingotY - 40;
+            const defaultRamY = anvilY - 110;
+            const strikeTargetY = ingotY - 26;
 
             if (pressAnimTimer > 0) {
-                const impactProgress = Math.sin((pressAnimTimer / 12) * Math.PI);
+                const impactProgress = Math.sin((pressAnimTimer / 14) * Math.PI);
                 pressOffsetY = impactProgress * (defaultRamY - strikeTargetY);
                 pressAnimTimer--;
             }
 
             const ramY = defaultRamY - pressOffsetY;
-            const pistonHeight = Math.max(8, ramY - 35);
+            const pistonHeight = Math.max(8, ramY - 33);
 
-            // Piston central
             ctx.fillStyle = '#64748b';
-            ctx.fillRect(pressX + 90, 35, pressWidth - 180, pistonHeight);
+            ctx.fillRect(pressX + 80, 33, pressWidth - 160, pistonHeight);
 
-            // Coulisseau / Bloc de frappe compact
             ctx.fillStyle = '#334155';
-            ctx.fillRect(pressX + 35, ramY, pressWidth - 70, 38);
+            ctx.fillRect(pressX + 30, ramY, pressWidth - 60, 32);
             ctx.fillStyle = '#475569';
-            ctx.fillRect(pressX + 40, ramY + 4, pressWidth - 80, 30);
+            ctx.fillRect(pressX + 35, ramY + 3, pressWidth - 70, 26);
             ctx.fillStyle = '#ffffff';
-            ctx.font = 'bold 10px Inter, sans-serif';
+            ctx.font = 'bold 9px Inter, sans-serif';
             ctx.textAlign = 'center';
-            ctx.fillText('PRESSE HYDRAULIQUE', w / 2, ramY + 22);
+            ctx.fillText('PRESSE HYDRAULIQUE', w / 2, ramY + 19);
 
             // 4. Rhythm Notes (Briques)
             if (gameState === 'PLAYING') {
@@ -727,13 +709,13 @@
                         continue;
                     }
 
-                    const nx = notes[i].lane * laneWidth + laneWidth / 2 - 20;
+                    const nx = notes[i].lane * laneWidth + laneWidth / 2 - 18;
                     const ny = notes[i].y;
                     
                     ctx.fillStyle = '#FF5000';
-                    ctx.fillRect(nx, ny - 10, 40, 20);
+                    ctx.fillRect(nx, ny - 10, 36, 18);
                     ctx.fillStyle = '#FFF200';
-                    ctx.fillRect(nx + 3, ny - 7, 34, 14);
+                    ctx.fillRect(nx + 2, ny - 7, 32, 12);
                 }
             }
 
@@ -750,9 +732,9 @@
                 if (p.life <= 0) particles.splice(i, 1);
             }
 
-            // 6. Lanes (Voies plus compactes)
+            // 6. Lanes
             const laneWidth = w / 4;
-            const targetY = h - 95;
+            const targetY = h - 75;
 
             for (let i = 0; i < 4; i++) {
                 const lx = i * laneWidth;
@@ -765,13 +747,13 @@
 
                 const active = activeKeys[i];
                 ctx.fillStyle = active ? 'rgba(0, 163, 224, 0.25)' : 'rgba(11, 19, 43, 0.75)';
-                ctx.fillRect(lx + 3, targetY - 25, laneWidth - 6, 50);
+                ctx.fillRect(lx + 3, targetY - 22, laneWidth - 6, 46);
                 ctx.strokeStyle = active ? '#00A3E0' : '#1e293b';
-                ctx.strokeRect(lx + 3, targetY - 25, laneWidth - 6, 50);
+                ctx.strokeRect(lx + 3, targetY - 22, laneWidth - 6, 46);
 
                 ctx.fillStyle = active ? '#00A3E0' : '#475569';
-                ctx.font = 'bold 13px JetBrains Mono, monospace';
-                ctx.fillText(['D', 'F', 'J', 'K'][i], lx + laneWidth / 2, targetY + 4);
+                ctx.font = 'bold 12px JetBrains Mono, monospace';
+                ctx.fillText(['D', 'F', 'J', 'K'][i], lx + laneWidth / 2, targetY + 3);
             }
 
             requestAnimationFrame(gameLoop);
